@@ -12,8 +12,11 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import MuiAlert from '@material-ui/lab/Alert';
+import axios from 'axios';
 
 import configs from './../../configs.json';
+import Snackbar from "@material-ui/core/Snackbar";
 
 function Copyright() {
     return (
@@ -48,21 +51,46 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 export default function SignIn() {
     const classes = useStyles();
 
     const [username, setusername] = React.useState();
     const [password, setpassword] = React.useState();
     const [checked, setchecked]  = React.useState(false);
+    const [error, setError] = React.useState(false);
 
     const login = ()=>{
         //todo add login functionality
         // If remember me is checked than set cookie expiry to 2 week and if not then set it to 24 hours
-      alert(username + password + checked);
+     // alert(username + password + checked);
+        setError(true);
+        axios.post(configs.server_address + "/login",
+            {username: username, password: password})
+            .then((res) => {
+                if (res.data.success) {
+                    //store all the data in persistent storage ( cookie )
+
+                }// else  do something
+
+            }).catch((err) => {
+            // show error --- enable the error snackbar
+
+        })
     };
 
     return (
         <Container component="main" maxWidth="xs">
+
+            <Snackbar open={error} autoHideDuration={5000} onClose={()=>setError(false)} >
+                <Alert severity="error" onClose={()=>setError(false)} >
+                    This is an error message!
+                </Alert>
+            </Snackbar>
+
             <CssBaseline/>
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>

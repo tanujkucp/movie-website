@@ -15,7 +15,7 @@ import AdminUpload from './views/pages/AdminUpload';
 
 const loading = () => <div className="animated fadeIn pt-3 text-center">Loading...</div>;
 
-//todo add other routes
+
 const routing = (
     <Router>
         <React.Suspense fallback={loading()}>
