@@ -5,17 +5,9 @@ import Link from "@material-ui/core/Link/Link";
 import configs from "../../configs";
 
 
-const useStyles = makeStyles((theme) => ({
-    footer: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(2),
-    },
-}));
-
-
 function Copyright() {
     return (
-        <Typography variant="body2" color="textSecondary" align="center">
+        <Typography variant="body2" align="center" style={{color: '#d0d0d0'}}>
             {'Copyright © '}
             <Link color="inherit" href={configs.website_address}>
                 {configs.website_name}
@@ -27,13 +19,13 @@ function Copyright() {
 }
 
 export default function Footer() {
-    const classes = useStyles();
-
     return (
-        <footer className={classes.footer}>
-            <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+        <footer style={{backgroundColor: 'rgb(36, 40, 44)', padding: 10}}>
+
+            <Typography variant="subtitle1" align="center" style={{color: 'white'}} component="p">
                 Something here to give the footer a purpose!
             </Typography>
+
             <Copyright/>
         </footer>
     );

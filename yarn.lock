@@ -1194,7 +1194,7 @@
     prop-types "^15.7.2"
     react-is "^16.8.0"
 
-"@material-ui/styles@^4.9.6":
+"@material-ui/styles@^4.9.6", "@material-ui/styles@latest":
   version "4.9.6"
   resolved "https://registry.yarnpkg.com/@material-ui/styles/-/styles-4.9.6.tgz#924a30bf7c9b91af9c8f19c12c8573b8a4ecd085"
   integrity sha512-ijgwStEkw1OZ6gCz18hkjycpr/3lKs1hYPi88O/AUn4vMuuGEGAIrqKVFq/lADmZUNF3DOFIk8LDkp7zmjPxtA==
@@ -1246,6 +1246,33 @@
   dependencies:
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
+
+"@mui-treasury/components@latest":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@mui-treasury/components/-/components-1.0.1.tgz#a43186562ad10f589e66a12ab5e193699d47f0cf"
+  integrity sha512-q/YjM0B/ynaD2mcYi2yu+LOrk9hcTVYboW7EcsABXvsN+2nCOWJj2AI8/sgOTUhd2/e/wLKHdOqI25neln4+jA==
+  dependencies:
+    "@mui-treasury/styles" "^1.1.0"
+    "@mui-treasury/utils" "^0.4.0"
+    clsx "^1.0.4"
+    use-deep-compare-effect "^1.3.0"
+
+"@mui-treasury/styles@^1.1.0", "@mui-treasury/styles@latest":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@mui-treasury/styles/-/styles-1.1.0.tgz#ce56f78911eff23a6b2314c6432850eb304087de"
+  integrity sha512-ZAqJuP4CVJjdT1eVp923rKPGbhCuAeGOpq1AvZNglIbzuTs1XAE+3zOpN31o22Fo6yPiS4GxufDkH/tjFL0AIQ==
+  dependencies:
+    "@mui-treasury/utils" "^0.4.0"
+    color "^3.1.2"
+
+"@mui-treasury/utils@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@mui-treasury/utils/-/utils-0.4.0.tgz#3853f2c94ddffc1edd4d30e17e84b3f8c5fa7f55"
+  integrity sha512-oGg+g488k6+Ul5FMFEq8kmxj2Y3Q9nADdONePhen2iQ7jKEjtlOaxqFqO84mA8eT1zyKUY/8e7Se7K9iRYvIgw==
+  dependencies:
+    clsx "^1.0.4"
+    lodash.get "^4.4.2"
+    lodash.isequal "^4.5.0"
 
 "@nodelib/fs.stat@^1.1.2":
   version "1.1.3"
@@ -1558,6 +1585,13 @@
     "@types/react-dom" "*"
     "@types/testing-library__dom" "*"
     pretty-format "^25.1.0"
+
+"@types/use-deep-compare-effect@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@types/use-deep-compare-effect/-/use-deep-compare-effect-1.2.0.tgz#d55d9bda6fea5ff7c93038c53052db1b3145f5d9"
+  integrity sha512-2uNqaSobMvUTGR7G72tUHDX+Kx341q25OuM0m2B6VID7eljIvYuDaFTKfmDnbvej67yEhCc35zA6dmIYriwOXA==
+  dependencies:
+    "@types/react" "*"
 
 "@types/yargs-parser@*":
   version "15.0.0"
@@ -2891,7 +2925,7 @@ clone-deep@^4.0.1:
     kind-of "^6.0.2"
     shallow-clone "^3.0.0"
 
-clsx@^1.0.2, clsx@^1.0.4:
+clsx@^1.0.2, clsx@^1.0.4, clsx@latest:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.1.0.tgz#62937c6adfea771247c34b54d320fb99624f5702"
   integrity sha512-3avwM37fSK5oP6M5rQ9CNe99lwxhXDOeSWVPAOYF6OazUTgZCMb0yWlJpmdD74REy1gkEaFiub2ULv4fq9GUhA==
@@ -2955,7 +2989,7 @@ color-string@^1.5.2:
     color-name "^1.0.0"
     simple-swizzle "^0.2.2"
 
-color@^3.0.0:
+color@^3.0.0, color@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/color/-/color-3.1.2.tgz#68148e7f85d41ad7649c5fa8c8106f098d229e10"
   integrity sha512-vXTJhHebByxZn3lDvDJYw4lR5+uB3vuoHsuYA5AKuxRVn5wzzIfQKGLBmgdVRHKTJYeK5rvJcHnrd0Li49CFpg==
@@ -3612,6 +3646,11 @@ depd@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/depd/-/depd-1.1.2.tgz#9bcd52e14c097763e749b274c4346ed2e560b5a9"
   integrity sha1-m81S4UwJd2PnSbJ0xDRu0uVgtak=
+
+dequal@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/dequal/-/dequal-1.0.0.tgz#41c6065e70de738541c82cdbedea5292277a017e"
+  integrity sha512-/Nd1EQbQbI9UbSHrMiKZjFLrXSnU328iQdZKPQf78XQI6C+gutkFUeoHpG5J08Ioa6HeRbRNFpSIclh1xyG0mw==
 
 des.js@^1.0.0:
   version "1.0.1"
@@ -6595,6 +6634,16 @@ lodash._reinterpolate@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
   integrity sha1-DM8tiRZq8Ds2Y8eWU4t1rG4RTZ0=
+
+lodash.get@^4.4.2:
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
+  integrity sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk=
+
+lodash.isequal@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+  integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
 
 lodash.memoize@^4.1.2:
   version "4.1.2"
@@ -10485,6 +10534,15 @@ url@^0.11.0:
   dependencies:
     punycode "1.3.2"
     querystring "0.2.0"
+
+use-deep-compare-effect@^1.3.0:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/use-deep-compare-effect/-/use-deep-compare-effect-1.3.1.tgz#90bdbed97e1acb8423f7bb0bf24de58590d021af"
+  integrity sha512-ejL+Al+aeDyC9Sywx56ti4PtSwkf6BH27tEptMWF2cfO41/auG0nRRsArh6Vv5bUyBe3z7IyxmgQCK5nas70hg==
+  dependencies:
+    "@babel/runtime" "^7.7.2"
+    "@types/use-deep-compare-effect" "^1.2.0"
+    dequal "^1.0.0"
 
 use@^3.1.0:
   version "3.1.1"

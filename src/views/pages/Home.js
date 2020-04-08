@@ -14,11 +14,13 @@ import Footer from './../widgets/Footer';
 import Header from './../widgets/Header';
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import Slide from "@material-ui/core/Slide";
+import WaveBorder from "../widgets/WaveBorder";
 
 const useStyles = makeStyles((theme) => ({
     heroContent: {
         backgroundColor: theme.palette.background.paper,
         padding: theme.spacing(8, 0, 6),
+        paddingTop: 10
     },
     heroButtons: {
         marginTop: theme.spacing(4),
@@ -26,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
     cardGrid: {
         paddingTop: theme.spacing(8),
         paddingBottom: theme.spacing(8),
+    },
+    waveBorder: {
+        paddingTop: theme.spacing(4),
     }
 }));
 
@@ -40,8 +45,14 @@ export default function Home() {
             <CssBaseline/>
 
             <Header/>
+            <WaveBorder
+                upperColor={'rgb(36, 40, 44)'}
+                lowerColor="#FFFFFF"
+                className={classes.waveBorder}
+                animationNegativeDelay={2}
+            />
 
-            <main>
+            <main style={{backgroundColor:"#cfd8dc"}}>
                 {/* Hero unit */}
                 <div className={classes.heroContent}>
                     <Container maxWidth="sm">
@@ -82,6 +93,11 @@ export default function Home() {
             </main>
 
             {/* Footer */}
+            <WaveBorder
+                upperColor="#cfd8dc"
+                lowerColor={'rgb(36, 40, 44)'}
+                animationNegativeDelay={4}
+            />
             <Footer/>
             {/* End footer */}
 

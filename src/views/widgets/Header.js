@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Header() {
     const classes = useStyles();
     return (
-        <AppBar position="relative">
+        <AppBar position="relative" style={{backgroundColor: 'rgb(36, 40, 44)'}}>
             <Toolbar style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <div>
                     <img src={logo} alt={'Logo'} className={classes.icon} style={{float: 'left'}}/>

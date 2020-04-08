@@ -17,6 +17,8 @@ import axios from 'axios';
 
 import configs from './../../configs.json';
 import Snackbar from "@material-ui/core/Snackbar";
+import Footer from './../widgets/Footer';
+import WaveBorder from "../widgets/WaveBorder";
 
 function Copyright() {
     return (
@@ -33,7 +35,8 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
     paper: {
-        marginTop: theme.spacing(8),
+        paddingTop: theme.spacing(10),
+        paddingBottom: theme.spacing(10),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -60,13 +63,13 @@ export default function SignIn() {
 
     const [username, setusername] = React.useState();
     const [password, setpassword] = React.useState();
-    const [checked, setchecked]  = React.useState(false);
+    const [checked, setchecked] = React.useState(false);
     const [error, setError] = React.useState(false);
 
-    const login = ()=>{
+    const login = () => {
         //todo add login functionality
         // If remember me is checked than set cookie expiry to 2 week and if not then set it to 24 hours
-     // alert(username + password + checked);
+        // alert(username + password + checked);
         setError(true);
         axios.post(configs.server_address + "/login",
             {username: username, password: password})
@@ -83,68 +86,75 @@ export default function SignIn() {
     };
 
     return (
-        <Container component="main" maxWidth="xs">
+        <div style={{backgroundColor: '#cfd8dc'}}>
+            <Container component="main" maxWidth="xs" style={{backgroundColor: '#cfd8dc'}}>
 
-            <Snackbar open={error} autoHideDuration={5000} onClose={()=>setError(false)} >
-                <Alert severity="error" onClose={()=>setError(false)} >
-                    This is an error message!
-                </Alert>
-            </Snackbar>
+                <Snackbar open={error} autoHideDuration={5000} onClose={() => setError(false)}>
+                    <Alert severity="error" onClose={() => setError(false)}>
+                        This is an error message!
+                    </Alert>
+                </Snackbar>
 
-            <CssBaseline/>
-            <div className={classes.paper}>
-                <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon/>
-                </Avatar>
-                <Typography component="h1" variant="h5">
-                    Sign in
-                </Typography>
-                <form className={classes.form} noValidate>
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="username"
-                        label="Username"
-                        name="username"
-                        value={username}
-                        onChange={(e)=>setusername(e.target.value)}
-                        autoComplete="email"
-                        autoFocus
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="password"
-                        label="Password"
-                        type="password"
-                        id="password"
-                        value={password}
-                        onChange={(e)=>setpassword(e.target.value)}
-                        autoComplete="current-password"
-                    />
-                    <FormControlLabel
-                        control={<Checkbox  color="primary" onChange = {(e)=>{setchecked(e.target.checked)}}/>}
-                        label="Remember me"
-                    />
-                    <Button
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                        onClick={login}
-                    >
-                        Sign In
-                    </Button>
+                <CssBaseline/>
+                <div className={classes.paper}>
+                    <Avatar className={classes.avatar}>
+                        <LockOutlinedIcon/>
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                        Sign in
+                    </Typography>
+                    <form className={classes.form} noValidate>
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="username"
+                            label="Username"
+                            name="username"
+                            value={username}
+                            onChange={(e) => setusername(e.target.value)}
+                            autoComplete="email"
+                            autoFocus
+                        />
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="password"
+                            label="Password"
+                            type="password"
+                            id="password"
+                            value={password}
+                            onChange={(e) => setpassword(e.target.value)}
+                            autoComplete="current-password"
+                        />
+                        <FormControlLabel
+                            control={<Checkbox color="primary" onChange={(e) => {
+                                setchecked(e.target.checked)
+                            }}/>}
+                            label="Remember me"
+                        />
+                        <Button
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                            onClick={login}
+                        >
+                            Sign In
+                        </Button>
 
-                </form>
-            </div>
-            <Box mt={8}>
-                <Copyright/>
-            </Box>
-        </Container>
+                    </form>
+                </div>
+            </Container>
+            <WaveBorder
+                upperColor="#cfd8dc"
+                lowerColor={'rgb(36, 40, 44)'}
+                animationNegativeDelay={4}
+            />
+            <Footer/>
+        </div>
     );
 }

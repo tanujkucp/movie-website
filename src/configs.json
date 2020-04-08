@@ -1,5 +1,7 @@
 {
   "website_name": "Movies Website",
   "website_address": "http://localhost:3000/",
-  "server_address":"http://localhost:8080"
+  "server_address":"http://localhost:8080",
+  "telegram_channel_name":"Telegram",
+  "telegram_channel_link":"#"
 }

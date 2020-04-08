@@ -17,6 +17,7 @@ const loading = () => <div className="animated fadeIn pt-3 text-center">Loading.
 
 
 const routing = (
+
     <Router>
         <React.Suspense fallback={loading()}>
             <Switch>

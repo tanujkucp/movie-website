@@ -31,7 +31,7 @@ export default function MediaCard(props) {
     const chips = ['1080p HEVC', 'BluRay', 'GDrive', 'WebDL'];
     return (
         <Grid item key={props.card} xs={12} sm={6} md={4}>
-            <Card className={classes.card} square={true} elevation={5}>
+            <Card className={classes.card}  elevation={5}>
                 <CardMedia
                     className={classes.cardMedia}
                     image="https://images.unsplash.com/photo-1544384050-f80fac6e525a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
