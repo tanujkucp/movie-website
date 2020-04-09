@@ -12,8 +12,6 @@ import configs from './../../configs.json';
 import MediaCard from './../widgets/MediaCard';
 import Footer from './../widgets/Footer';
 import Header from './../widgets/Header';
-import useScrollTrigger from "@material-ui/core/useScrollTrigger";
-import Slide from "@material-ui/core/Slide";
 import WaveBorder from "../widgets/WaveBorder";
 
 const useStyles = makeStyles((theme) => ({

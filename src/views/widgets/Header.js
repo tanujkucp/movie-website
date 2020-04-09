@@ -29,7 +29,7 @@ export default function Header() {
                 <div>
                     <img src={logo} alt={'Logo'} className={classes.icon} style={{float: 'left'}}/>
                     <Link color="inherit" href={configs.website_address} style={{float: 'right'}}>
-                        <Typography variant="h6" color="inherit" noWrap>
+                        <Typography variant="h6" style={{color: 'white'}} noWrap>
                             {configs.website_name}
                         </Typography>
                     </Link>

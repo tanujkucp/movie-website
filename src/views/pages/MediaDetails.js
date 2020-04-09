@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Header from './../widgets/Header';
 import Footer from './../widgets/Footer';
 import CssBaseline from "@material-ui/core/CssBaseline/CssBaseline";
@@ -8,7 +8,6 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import TextInfoContent from '@mui-treasury/components/content/textInfo';
 import {useBlogTextInfoContentStyles} from '@mui-treasury/styles/textInfoContent/blog';
 import {useOverShadowStyles} from '@mui-treasury/styles/shadow/over';
 import Typography from "@material-ui/core/Typography/Typography";
@@ -19,40 +18,48 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import configs from "../../configs";
 import Link from "@material-ui/core/Link/Link";
 import WaveBorder from "../widgets/WaveBorder";
+import Divider from "@material-ui/core/Divider";
+import Carousel from '../widgets/Carousel';
+import Container from "@material-ui/core/Container";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardActions from "@material-ui/core/CardActions";
+import StarIcon from '@material-ui/icons/StarBorder';
+import YouTube from "react-youtube";
 
-const useStyles = makeStyles(({breakpoints, spacing}) => ({
+const useStyles = makeStyles((theme) => ({
     root: {
         margin: 'auto',
-        borderRadius: spacing(2), // 16px
+        borderRadius: theme.spacing(2), // 16px
         transition: '0.3s',
         boxShadow: '0px 14px 80px rgba(34, 35, 58, 0.2)',
         position: 'relative',
         maxWidth: 800,
         marginLeft: 'auto',
+        marginBottom: 20,
         overflow: 'initial',
         background: '#ffffff',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        paddingBottom: spacing(2),
-        [breakpoints.up('md')]: {
+        paddingBottom: theme.spacing(2),
+        [theme.breakpoints.up('md')]: {
             flexDirection: 'row',
-            paddingTop: spacing(2),
+            paddingTop: theme.spacing(2),
         },
     },
     media: {
         width: '50%',
         marginLeft: 'auto',
         marginRight: 'auto',
-        marginTop: spacing(-3),
+        marginTop: theme.spacing(-3),
         height: 0,
         paddingBottom: '48%',
-        borderRadius: spacing(2),
+        borderRadius: theme.spacing(2),
         backgroundColor: '#fff',
         position: 'relative',
-        [breakpoints.up('md')]: {
+        [theme.breakpoints.up('md')]: {
             width: '50%',
-            marginLeft: spacing(-3),
+            marginLeft: theme.spacing(-3),
             marginTop: 0,
             transform: 'translateX(-8px)',
         }
@@ -65,11 +72,38 @@ const useStyles = makeStyles(({breakpoints, spacing}) => ({
         textTransform: 'initial',
     },
     button: {
-        margin: spacing(1),
+        margin: theme.spacing(1),
         marginTop: 20,
+    },
+    cardHeader: {
+        backgroundColor:
+            theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[700],
+    },
+    cardPricing: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'baseline',
+        marginBottom: theme.spacing(1),
     }
 }));
 
+const images = ['https://images.unsplash.com/photo-1580757468214-c73f7062a5cb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',
+    'https://images.unsplash.com/photo-1580757468214-c73f7062a5cb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'];
+
+const downloads = [
+    {
+        quality: '1080p',
+        details: ['x265 HEVC', 'English Subs'],
+        size: '2.1 GB',
+        links: ['#', '#']
+    },
+    {
+        quality: '720p',
+        details: ['x265 HEVC', 'English Subs'],
+        size: '1 GB',
+        links: ['#', '#', '#']
+    }
+];
 
 export default function MediaDetails(props) {
 
@@ -90,7 +124,7 @@ export default function MediaDetails(props) {
             <Header/>
 
 
-            <main style={{padding: 20, backgroundColor:'#cfd8dc'}}>
+            <main style={{padding: 20, backgroundColor: '#cfd8dc',}}>
                 <Card className={cx(styles.root, shadowStyles.root)}>
                     <CardMedia
                         className={styles.media}
@@ -102,16 +136,8 @@ export default function MediaDetails(props) {
                             Angreji Medium (2020)
                         </Typography>
                         <div style={{paddingTop: 10}}>
-                            <Grid container spacing={1} style={{paddingLeft: 10, paddingBottom: 10}}>
-                                {chips.map(chip => (
-                                    <Grid item key={chip}>
-                                        <Chip icon={<DoneIcon/>} size="medium" label={chip}/>
-                                    </Grid>)
-                                )}
-
-                            </Grid>
                             <Typography align="center" color="textPrimary">
-                                2014 ‧ Sci-fi / Action ‧ 1h 53m ‧ <Link href='#'>
+                                2014 ‧ Sci-fi / Action ‧ 8.8/10 ‧ <Link href='#'>
                                 IMDb
                             </Link>
                             </Typography>
@@ -120,11 +146,18 @@ export default function MediaDetails(props) {
                                 Hindi + English (Dual Audio)
                             </Typography>
 
+                            <Grid container spacing={1} style={{paddingLeft: 10, paddingTop: 20}}>
+                                {chips.map(chip => (
+                                    <Grid item key={chip}>
+                                        <Chip icon={<DoneIcon/>} size="medium" label={chip}/>
+                                    </Grid>)
+                                )}
+                            </Grid>
 
                         </div>
                         <div style={{paddingTop: 10, paddingRight: 40}}>
                             <Button
-                                variant="contained"
+                                variant="outlined"
                                 color="primary"
                                 fullWidth
                                 className={styles.button}
@@ -135,7 +168,69 @@ export default function MediaDetails(props) {
                         </div>
                     </CardContent>
                 </Card>
+
+                <Card className={cx(styles.root, shadowStyles.root)}>
+                    <div style={{padding: 20, flexDirection: 'column'}}>
+                        <Typography align="center" color="textPrimary">
+                            With the help of warrior Rita Vrataski, Major William Cage has to save Earth and the human
+                            race from an alien species, after being caught in a time loop.
+                        </Typography>
+                        <Divider variant="middle" style={{marginTop: 10, marginBottom:10}}/>
+
+                        <Typography variant="h4" align="center" color="textPrimary" style={{marginBottom:10}}>
+                            Trailer
+                        </Typography>
+
+                        <YouTube videoId="2g811Eo7K8U" opts={{ width: '100%'}} />
+
+                        <Typography variant="h4" align="center" color="textPrimary" style={{marginTop:20}}>
+                            Screenshots
+                        </Typography>
+                        <Carousel images={images}/>
+
+                        <Container maxWidth="md" component="main">
+                            <Grid container spacing={5} alignItems="flex-end">
+                                {downloads.map((download) => (
+                                    <Grid item key={download.quality} xs={12} sm={6}
+                                          md={4}>
+                                        <Card>
+                                            <CardHeader
+                                                title={download.quality}
+                                                titleTypographyProps={{align: 'center'}}
+                                                action={download.quality === '1080p' ? <StarIcon/> : null}
+                                                className={styles.cardHeader}
+                                            />
+                                            <CardContent>
+                                                <div className={styles.cardPricing}>
+                                                    <Typography component="h4" variant="h4" color="textPrimary">
+                                                        {download.size}
+                                                    </Typography>
+                                                </div>
+                                                <ul style={{listStyleType: 'none', padding: 0}}>
+                                                    {download.details.map((line) => (
+                                                        <Typography component="li" variant="subtitle1" align="center"
+                                                                    key={line}>
+                                                            {line}
+                                                        </Typography>
+                                                    ))}
+                                                </ul>
+                                            </CardContent>
+                                            <CardActions>
+                                                <Button fullWidth variant={'contained'} color="primary">
+                                                    See Links
+                                                </Button>
+                                            </CardActions>
+                                        </Card>
+                                    </Grid>
+                                ))}
+                            </Grid>
+                        </Container>
+
+                    </div>
+
+                </Card>
             </main>
+
             <WaveBorder
                 upperColor="#cfd8dc"
                 lowerColor={'rgb(36, 40, 44)'}
@@ -146,4 +241,5 @@ export default function MediaDetails(props) {
     );
 
 }
+
 
