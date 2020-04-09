@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import DeleteIcon from '@material-ui/icons/Delete';
+import SearchIcon from '@material-ui/icons/Search';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -13,7 +14,11 @@ import MediaCard from './../widgets/MediaCard';
 import Footer from './../widgets/Footer';
 import Header from './../widgets/Header';
 import WaveBorder from "../widgets/WaveBorder";
-import Paper from "@material-ui/core/Paper/Paper";
+import Paper from "@material-ui/core/Paper";
+import TextField from "@material-ui/core/TextField";
+import {fade} from "@material-ui/core";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from "@material-ui/core/IconButton";
 
 const useStyles = makeStyles((theme) => ({
     cardGrid: {
@@ -65,8 +70,16 @@ export default function Search() {
             <Header/>
 
             <main style={{backgroundColor: "#cfd8dc"}}>
-
-
+                <div style={{display: 'flex', paddingTop:30,justifyContent: 'center'}}>
+                    <TextField
+                        label="Enter movie/series name here"
+                        variant="outlined"
+                        style={{ width: '50%', backgroundColor: '#fff',borderRadius: 10, borderColor: 'blue'}}
+                    />
+                    <IconButton type="submit" style={{ marginLeft: 20, backgroundColor: 'white'}} aria-label="search">
+                        <SearchIcon />
+                    </IconButton>
+                </div>
 
                 <Container className={classes.cardGrid} maxWidth="md">
                     <Grid container spacing={4}>

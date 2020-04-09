@@ -25,6 +25,8 @@ import CardHeader from "@material-ui/core/CardHeader";
 import CardActions from "@material-ui/core/CardActions";
 import StarIcon from '@material-ui/icons/StarBorder';
 import YouTube from "react-youtube";
+import LinkDialog from './../widgets/LinkDialog';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -105,6 +107,7 @@ const downloads = [
     }
 ];
 
+
 export default function MediaDetails(props) {
 
     const styles = useStyles();
@@ -113,16 +116,17 @@ export default function MediaDetails(props) {
         ...contentStyles
     } = useBlogTextInfoContentStyles();
     const shadowStyles = useOverShadowStyles();
+    let linksPosition;
 
     const {params} = props.match;
     //alert(params.id);
     const chips = ['1080p', 'BluRay', 'GDrive', 'x265 HEVC', 'DD 5.1'];
+
     return (
         <React.Fragment>
             <CssBaseline/>
 
             <Header/>
-
 
             <main style={{padding: 20, backgroundColor: '#cfd8dc',}}>
                 <Card className={cx(styles.root, shadowStyles.root)}>
@@ -161,8 +165,8 @@ export default function MediaDetails(props) {
                                 color="primary"
                                 fullWidth
                                 className={styles.button}
-                                startIcon={<CloudUploadIcon/>}
-                            >
+                                onClick={()=> linksPosition.scrollIntoView({ behavior: "smooth" })}
+                                startIcon={<CloudUploadIcon/>}>
                                 Download Now
                             </Button>
                         </div>
@@ -175,20 +179,27 @@ export default function MediaDetails(props) {
                             With the help of warrior Rita Vrataski, Major William Cage has to save Earth and the human
                             race from an alien species, after being caught in a time loop.
                         </Typography>
-                        <Divider variant="middle" style={{marginTop: 10, marginBottom:10}}/>
+                        <Divider variant="middle" style={{marginTop: 10, marginBottom: 10}}/>
 
-                        <Typography variant="h4" align="center" color="textPrimary" style={{marginBottom:10}}>
+                        <Typography variant="h4" align="center" color="textPrimary" style={{marginBottom: 10}}>
                             Trailer
                         </Typography>
 
-                        <YouTube videoId="2g811Eo7K8U" opts={{ width: '100%'}} />
+                        <YouTube videoId="2g811Eo7K8U" opts={{width: '100%'}}/>
 
-                        <Typography variant="h4" align="center" color="textPrimary" style={{marginTop:20}}>
+                        <Typography variant="h4" align="center" color="textPrimary" style={{marginTop: 20}}>
                             Screenshots
                         </Typography>
                         <Carousel images={images}/>
 
-                        <Container maxWidth="md" component="main">
+                        <Typography variant="h5" align="center" style={{marginTop: 20, color: 'red', marginBottom: 10}}>
+                            * Report any broken/dead links in our <Link href={configs.telegram_channel_link}>
+                            Telegram Group</Link> *
+                        </Typography>
+
+                        <Container maxWidth="md" component="main" ref={(el) => {
+                            linksPosition = el;
+                        }}>
                             <Grid container spacing={5} alignItems="flex-end">
                                 {downloads.map((download) => (
                                     <Grid item key={download.quality} xs={12} sm={6}
@@ -226,10 +237,21 @@ export default function MediaDetails(props) {
                             </Grid>
                         </Container>
 
+                        <Divider variant="middle" style={{marginTop: 10, marginBottom: 10}}/>
+                        <div style={{flexDirection: 'row', display: 'flex', justifyContent: 'center'}}>
+                            <Typography color="textPrimary">
+                                <StarIcon/> April 9,2020
+                            </Typography>
+                            <Typography color="textPrimary" style={{marginLeft: 20}}>
+                                <StarIcon/> Uploaded by Phoenix
+                            </Typography>
+                        </div>
                     </div>
 
                 </Card>
             </main>
+
+            <LinkDialog/>
 
             <WaveBorder
                 upperColor="#cfd8dc"

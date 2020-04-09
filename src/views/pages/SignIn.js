@@ -20,18 +20,6 @@ import Snackbar from "@material-ui/core/Snackbar";
 import Footer from './../widgets/Footer';
 import WaveBorder from "../widgets/WaveBorder";
 
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href={configs.website_address}>
-                {configs.website_name}
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
 
 const useStyles = makeStyles((theme) => ({
     paper: {
