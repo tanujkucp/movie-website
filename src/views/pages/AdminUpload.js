@@ -6,7 +6,6 @@ import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import MuiAlert from '@material-ui/lab/Alert';
 import axios from 'axios';
-
 import configs from './../../configs.json';
 import Snackbar from "@material-ui/core/Snackbar";
 import Footer from './../widgets/Footer';
@@ -63,11 +62,11 @@ const steps = ['Basic Info', 'Add references', 'Add Links'];
 function getStepContent(step) {
     switch (step) {
         case 0:
-            return <UploadPart3/>;
-        case 1:
             return <UploadPart1/>;
-        case 2:
+        case 1:
             return <UploadPart2/>;
+        case 2:
+            return <UploadPart3/>;
         default:
             throw new Error('Unknown step');
     }

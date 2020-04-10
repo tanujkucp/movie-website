@@ -1,33 +1,47 @@
 import React, {Component} from 'react';
-import {Button, Col, Container, Input, InputGroup, InputGroupAddon, InputGroupText, Row} from 'reactstrap';
+import {Button, Col, Container,Row} from 'reactstrap';
+import Header from "../widgets/Header";
+import CssBaseline from "@material-ui/core/CssBaseline/CssBaseline";
+import WaveBorder from "../widgets/WaveBorder";
+import Footer from "../widgets/Footer";
+import configs from "../../configs";
+import Typography from "@material-ui/core/Typography/Typography";
+import Link from "@material-ui/core/Link";
 
 class Page404 extends Component {
     render() {
         return (
-            <div className="app flex-row align-items-center">
-                <Container>
-                    <Row className="justify-content-center">
-                        <Col md="6">
-                            <div className="clearfix">
-                                <h1 className="float-left display-3 mr-4">404</h1>
-                                <h4 className="pt-3">Oops! You're lost.</h4>
-                                <p className="text-muted float-left">The page you are looking for was not found.</p>
-                            </div>
-                            <InputGroup className="input-prepend">
-                                <InputGroupAddon addonType="prepend">
-                                    <InputGroupText>
-                                        <i className="fa fa-search"></i>
-                                    </InputGroupText>
-                                </InputGroupAddon>
-                                <Input size="16" type="text" placeholder="What are you looking for?"/>
-                                <InputGroupAddon addonType="append">
-                                    <Button color="info">Search</Button>
-                                </InputGroupAddon>
-                            </InputGroup>
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
+            <React.Fragment >
+                <CssBaseline/>
+                <Header/>
+                <div style={{backgroundColor:"#cfd8dc", paddingTop: 150, paddingBottom:150}}>
+                    <Container >
+                        <Row className="justify-content-center">
+                            <Col md="6">
+                                <div className="clearfix">
+                                    <h1 className="float-left display-3 mr-4">404</h1>
+                                    <h4 className="pt-3">Oops! You're lost.</h4>
+                                    <p className="text-muted float-left">The page you are looking for was not found.</p>
+                                </div>
+
+                            </Col>
+                        </Row>
+                        <Row className={'justify-content-center'}>
+                            <Typography  variant="h5" color="textPrimary" gutterBottom>
+                                You will be redirected to <Link href={configs.website_address}> Home Page </Link>in 5 seconds.
+                            </Typography>
+                        </Row>
+                    </Container>
+                </div>
+                {/* Footer */}
+                <WaveBorder
+                    upperColor="#cfd8dc"
+                    lowerColor={'rgb(36, 40, 44)'}
+                    animationNegativeDelay={4}
+                />
+                <Footer/>
+                {/* End footer */}
+            </React.Fragment>
         );
     }
 }

@@ -89,7 +89,7 @@ export default function SignIn() {
                         <LockOutlinedIcon/>
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Sign in
+                        Sign In
                     </Typography>
                     <form className={classes.form} noValidate>
                         <TextField
@@ -104,6 +104,7 @@ export default function SignIn() {
                             onChange={(e) => setusername(e.target.value)}
                             autoComplete="email"
                             autoFocus
+                            style={{backgroundColor: '#eee'}}
                         />
                         <TextField
                             variant="outlined"
@@ -117,6 +118,7 @@ export default function SignIn() {
                             value={password}
                             onChange={(e) => setpassword(e.target.value)}
                             autoComplete="current-password"
+                            style={{backgroundColor: '#eee'}}
                         />
                         <FormControlLabel
                             control={<Checkbox color="primary" onChange={(e) => {
