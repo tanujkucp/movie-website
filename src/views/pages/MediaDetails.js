@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Header from './../widgets/Header';
 import Footer from './../widgets/Footer';
 import CssBaseline from "@material-ui/core/CssBaseline/CssBaseline";
 import cx from 'clsx';
-import {makeStyles} from '@material-ui/core/styles';
+import {makeStyles, withStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
@@ -25,7 +25,13 @@ import CardHeader from "@material-ui/core/CardHeader";
 import CardActions from "@material-ui/core/CardActions";
 import StarIcon from '@material-ui/icons/StarBorder';
 import YouTube from "react-youtube";
-import LinkDialog from './../widgets/LinkDialog';
+import axios from "axios";
+import MuiDialogTitle from "@material-ui/core/DialogTitle/DialogTitle";
+import IconButton from "@material-ui/core/IconButton/IconButton";
+import CloseIcon from "@material-ui/core/SvgIcon/SvgIcon";
+import MuiDialogContent from "@material-ui/core/DialogContent/DialogContent";
+import MuiDialogActions from "@material-ui/core/DialogActions/DialogActions";
+import Dialog from "@material-ui/core/Dialog/Dialog";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -86,30 +92,50 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         alignItems: 'baseline',
         marginBottom: theme.spacing(1),
-    }
+    },
 }));
 
-const images = ['https://images.unsplash.com/photo-1580757468214-c73f7062a5cb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',
-    'https://images.unsplash.com/photo-1580757468214-c73f7062a5cb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'];
-
-const downloads = [
-    {
-        quality: '1080p',
-        details: ['x265 HEVC', 'English Subs'],
-        size: '2.1 GB',
-        links: ['#', '#']
+const dialog_styles = (theme) => ({
+    root: {
+        margin: 0,
+        padding: theme.spacing(2),
     },
-    {
-        quality: '720p',
-        details: ['x265 HEVC', 'English Subs'],
-        size: '1 GB',
-        links: ['#', '#', '#']
-    }
-];
+    closeButton: {
+        position: 'absolute',
+        right: theme.spacing(1),
+        top: theme.spacing(1),
+        color: theme.palette.grey[500],
+    },
+});
+const DialogContent = withStyles((theme) => ({
+    root: {
+        padding: theme.spacing(2),
+    },
+}))(MuiDialogContent);
+
+const DialogActions = withStyles((theme) => ({
+    root: {
+        margin: 0,
+        padding: theme.spacing(1),
+    },
+}))(MuiDialogActions);
+
+const DialogTitle = withStyles(dialog_styles)((props) => {
+    const {children, classes, onClose, ...other} = props;
+    return (
+        <MuiDialogTitle disableTypography className={classes.root} {...other}>
+            <Typography variant="h6">{children}</Typography>
+            {onClose ? (
+                <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+                    <CloseIcon/>
+                </IconButton>
+            ) : null}
+        </MuiDialogTitle>
+    );
+});
 
 
 export default function MediaDetails(props) {
-
     const styles = useStyles();
     const {
         button: buttonStyles,
@@ -118,9 +144,29 @@ export default function MediaDetails(props) {
     const shadowStyles = useOverShadowStyles();
     let linksPosition;
 
+    const [details, setDetails] = useState();
+    const [open, setOpen] = React.useState(false);
+    const [selected_download, setSelectedDownload] = useState();
+
+    const handleClickOpen = (download) => {
+        setOpen(true);
+        setSelectedDownload(download);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+    //fetch data from server
     const {params} = props.match;
-    //alert(params.id);
-    const chips = ['1080p', 'BluRay', 'GDrive', 'x265 HEVC', 'DD 5.1'];
+    axios.post(configs.server_address + '/getMedia', {media_id: params.id}).then(res => {
+        if (res.data.success) {
+            //change state of all elements
+            setDetails(res.data.data);
+        } else {
+            alert(res.data.message);
+        }
+    }).catch(err => {
+        console.log(err);
+    });
 
     return (
         <React.Fragment>
@@ -128,130 +174,156 @@ export default function MediaDetails(props) {
 
             <Header/>
 
-            <main style={{padding: 20, backgroundColor: '#cfd8dc',}}>
-                <Card className={cx(styles.root, shadowStyles.root)}>
-                    <CardMedia
-                        className={styles.media}
-                        image={'https://images.unsplash.com/photo-1544384050-f80fac6e525a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'}
-                    />
-                    <CardContent>
+            {details ? (
+                <main style={{padding: 20, backgroundColor: '#cfd8dc',}}>
+                    <Card className={cx(styles.root, shadowStyles.root)}>
+                        <CardMedia
+                            className={styles.media}
+                            image={details.poster_link}
+                        />
+                        <CardContent>
 
-                        <Typography variant="h4" align="center" color="textPrimary">
-                            Angreji Medium (2020)
-                        </Typography>
-                        <div style={{paddingTop: 10}}>
+                            <Typography variant="h4" align="center" color="textPrimary">
+                                {details.title}
+                            </Typography>
+                            <div style={{paddingTop: 10}}>
+                                <Typography align="center" color="textPrimary">
+                                    {details.release_year} ‧ {details.genre} ‧ {details.IMDb_rating}/10 ‧ <Link
+                                    href={details.IMDb_link}>
+                                    IMDb
+                                </Link>
+                                </Typography>
+
+                                <Typography variant="h6" align="center" color="textPrimary">
+                                    {details.language}
+                                </Typography>
+
+                                <Grid container spacing={1} style={{paddingLeft: 10, paddingTop: 20}}>
+                                    {details.tags.map(chip => (
+                                        <Grid item key={chip}>
+                                            <Chip icon={<DoneIcon/>} size="medium" label={chip}/>
+                                        </Grid>)
+                                    )}
+                                </Grid>
+
+                            </div>
+                            <div style={{paddingTop: 10, paddingRight: 40}}>
+                                <Button
+                                    variant="outlined"
+                                    color="primary"
+                                    fullWidth
+                                    className={styles.button}
+                                    onClick={() => linksPosition.scrollIntoView({behavior: "smooth"})}
+                                    startIcon={<CloudUploadIcon/>}>
+                                    Download Now
+                                </Button>
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    <Card className={cx(styles.root, shadowStyles.root)}>
+                        <div style={{padding: 20, flexDirection: 'column'}}>
                             <Typography align="center" color="textPrimary">
-                                2014 ‧ Sci-fi / Action ‧ 8.8/10 ‧ <Link href='#'>
-                                IMDb
-                            </Link>
+                                {details.description}
+                            </Typography>
+                            <Divider variant="middle" style={{marginTop: 10, marginBottom: 10}}/>
+
+                            <Typography variant="h4" align="center" color="textPrimary" style={{marginBottom: 10}}>
+                                Trailer
                             </Typography>
 
-                            <Typography variant="h6" align="center" color="textPrimary">
-                                Hindi + English (Dual Audio)
+                            <YouTube videoId={details.youtube_trailer_video_id} opts={{width: '100%'}}/>
+
+                            <Typography variant="h4" align="center" color="textPrimary" style={{marginTop: 20}}>
+                                Screenshots
+                            </Typography>
+                            <Carousel images={details.screenshots}/>
+
+                            <Typography variant="h5" align="center"
+                                        style={{marginTop: 20, color: 'red', marginBottom: 10}}>
+                                * Report any broken/dead links in our <Link href={configs.telegram_channel_link}>
+                                Telegram Group</Link> *
                             </Typography>
 
-                            <Grid container spacing={1} style={{paddingLeft: 10, paddingTop: 20}}>
-                                {chips.map(chip => (
-                                    <Grid item key={chip}>
-                                        <Chip icon={<DoneIcon/>} size="medium" label={chip}/>
-                                    </Grid>)
-                                )}
-                            </Grid>
-
-                        </div>
-                        <div style={{paddingTop: 10, paddingRight: 40}}>
-                            <Button
-                                variant="outlined"
-                                color="primary"
-                                fullWidth
-                                className={styles.button}
-                                onClick={()=> linksPosition.scrollIntoView({ behavior: "smooth" })}
-                                startIcon={<CloudUploadIcon/>}>
-                                Download Now
-                            </Button>
-                        </div>
-                    </CardContent>
-                </Card>
-
-                <Card className={cx(styles.root, shadowStyles.root)}>
-                    <div style={{padding: 20, flexDirection: 'column'}}>
-                        <Typography align="center" color="textPrimary">
-                            With the help of warrior Rita Vrataski, Major William Cage has to save Earth and the human
-                            race from an alien species, after being caught in a time loop.
-                        </Typography>
-                        <Divider variant="middle" style={{marginTop: 10, marginBottom: 10}}/>
-
-                        <Typography variant="h4" align="center" color="textPrimary" style={{marginBottom: 10}}>
-                            Trailer
-                        </Typography>
-
-                        <YouTube videoId="2g811Eo7K8U" opts={{width: '100%'}}/>
-
-                        <Typography variant="h4" align="center" color="textPrimary" style={{marginTop: 20}}>
-                            Screenshots
-                        </Typography>
-                        <Carousel images={images}/>
-
-                        <Typography variant="h5" align="center" style={{marginTop: 20, color: 'red', marginBottom: 10}}>
-                            * Report any broken/dead links in our <Link href={configs.telegram_channel_link}>
-                            Telegram Group</Link> *
-                        </Typography>
-
-                        <Container maxWidth="md" component="main" ref={(el) => {
-                            linksPosition = el;
-                        }}>
-                            <Grid container spacing={5} alignItems="flex-end">
-                                {downloads.map((download) => (
-                                    <Grid item key={download.quality} xs={12} sm={6}
-                                          md={4}>
-                                        <Card>
-                                            <CardHeader
-                                                title={download.quality}
-                                                titleTypographyProps={{align: 'center'}}
-                                                action={download.quality === '1080p' ? <StarIcon/> : null}
-                                                className={styles.cardHeader}
-                                            />
-                                            <CardContent>
-                                                <div className={styles.cardPricing}>
-                                                    <Typography component="h4" variant="h4" color="textPrimary">
-                                                        {download.size}
-                                                    </Typography>
-                                                </div>
-                                                <ul style={{listStyleType: 'none', padding: 0}}>
-                                                    {download.details.map((line) => (
-                                                        <Typography component="li" variant="subtitle1" align="center"
-                                                                    key={line}>
-                                                            {line}
+                            <Container maxWidth="md" component="main" ref={(el) => {
+                                linksPosition = el;
+                            }}>
+                                <Grid container spacing={5} alignItems="flex-end">
+                                    {details.downloads.map((download) => (
+                                        <Grid item key={download.quality} xs={12} sm={6}
+                                              md={4}>
+                                            <Card>
+                                                <CardHeader
+                                                    title={download.quality}
+                                                    titleTypographyProps={{align: 'center'}}
+                                                    action={download.quality === '1080p' ? <StarIcon/> : null}
+                                                    className={styles.cardHeader}
+                                                />
+                                                <CardContent>
+                                                    <div className={styles.cardPricing}>
+                                                        <Typography component="h4" variant="h4" color="textPrimary">
+                                                            {download.size}
                                                         </Typography>
-                                                    ))}
-                                                </ul>
-                                            </CardContent>
-                                            <CardActions>
-                                                <Button fullWidth variant={'contained'} color="primary">
-                                                    See Links
-                                                </Button>
-                                            </CardActions>
-                                        </Card>
-                                    </Grid>
-                                ))}
-                            </Grid>
-                        </Container>
+                                                    </div>
+                                                    <ul style={{listStyleType: 'none', padding: 0}}>
+                                                        {download.details.map((line) => (
+                                                            <Typography component="li" variant="subtitle1"
+                                                                        align="center"
+                                                                        key={line}>
+                                                                {line}
+                                                            </Typography>
+                                                        ))}
+                                                    </ul>
+                                                </CardContent>
+                                                <CardActions>
+                                                    <Button fullWidth variant={'contained'} color="primary"
+                                                            onClick={() => handleClickOpen(download)}>
+                                                        See Links
+                                                    </Button>
+                                                </CardActions>
+                                            </Card>
+                                        </Grid>
+                                    ))}
+                                </Grid>
+                            </Container>
 
-                        <Divider variant="middle" style={{marginTop: 10, marginBottom: 10}}/>
-                        <div style={{flexDirection: 'row', display: 'flex', justifyContent: 'center'}}>
-                            <Typography color="textPrimary">
-                                <StarIcon/> April 9,2020
-                            </Typography>
-                            <Typography color="textPrimary" style={{marginLeft: 20}}>
-                                <StarIcon/> Uploaded by Phoenix
-                            </Typography>
+                            <Divider variant="middle" style={{marginTop: 10, marginBottom: 10}}/>
+                            <div style={{flexDirection: 'row', display: 'flex', justifyContent: 'center'}}>
+                                <Typography color="textPrimary">
+                                    <StarIcon/> April 9,2020
+                                </Typography>
+                                <Typography color="textPrimary" style={{marginLeft: 20}}>
+                                    <StarIcon/> Uploaded by {details.username}
+                                </Typography>
+                            </div>
                         </div>
-                    </div>
 
-                </Card>
-            </main>
+                    </Card>
+                    {selected_download ? (
+                        <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}
+                                fullWidth={true}>
+                            <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                                {selected_download.quality} Links
+                            </DialogTitle>
+                            <DialogContent dividers>
+                                {selected_download.links.map(item => (
+                                    <Typography gutterBottom>
+                                        {item.label} : <Link
+                                        href={item.link}>{item.link}</Link>
+                                    </Typography>
+                                ))}
 
-            <LinkDialog/>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button autoFocus onClick={handleClose} color="primary">
+                                    Done
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
+                    ) : (null)}
+
+                </main>
+            ) : (null)}
 
             <WaveBorder
                 upperColor="#cfd8dc"

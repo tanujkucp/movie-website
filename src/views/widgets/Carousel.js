@@ -12,7 +12,7 @@ export default class Carousel2 extends React.Component {
         return (<div style={{width:'100%', padding: 20}}>
                 <Carousel interval={2000}>
                     {this.props.images.map((image) => (
-                        <Carousel.Item>
+                        <Carousel.Item key={image}>
                             <img
                                 className="d-block w-100"
                                 src={image}
