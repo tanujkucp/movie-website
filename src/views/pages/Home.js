@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
@@ -6,8 +6,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
-
+import axios from 'axios';
 import configs from './../../configs.json';
 import MediaCard from './../widgets/MediaCard';
 import Footer from './../widgets/Footer';
@@ -33,10 +32,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
 export default function Home() {
     const classes = useStyles();
+
+    const [latest, setLatest] = useState();
+
+    //fetch data from server
+    useEffect(() => {
+        axios.post(configs.server_address + '/getLatest').then(res => {
+            if (res.data.success) {
+                //change state of all elements
+                setLatest(res.data.data);
+            } else {
+                alert(res.data.message);
+            }
+        }).catch(err => {
+            console.log(err);
+        });
+    }, []);
 
     return (
         <React.Fragment>
@@ -80,12 +93,14 @@ export default function Home() {
                 </div>
                 <Container className={classes.cardGrid} maxWidth="md">
                     {/* End hero unit */}
+                    {latest? (
+                        <Grid container spacing={4}>
+                            {latest.map((card) => (
+                                <MediaCard card={card}/>
+                            ))}
+                        </Grid>
+                    ):(null)}
 
-                    <Grid container spacing={4}>
-                        {cards.map((card) => (
-                            <MediaCard card={card}/>
-                        ))}
-                    </Grid>
 
                 </Container>
             </main>

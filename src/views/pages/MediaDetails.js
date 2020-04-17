@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from './../widgets/Header';
 import Footer from './../widgets/Footer';
 import CssBaseline from "@material-ui/core/CssBaseline/CssBaseline";
@@ -8,7 +8,6 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import {useBlogTextInfoContentStyles} from '@mui-treasury/styles/textInfoContent/blog';
 import {useOverShadowStyles} from '@mui-treasury/styles/shadow/over';
 import Typography from "@material-ui/core/Typography/Typography";
 import Grid from "@material-ui/core/Grid/Grid";
@@ -32,6 +31,7 @@ import CloseIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import MuiDialogContent from "@material-ui/core/DialogContent/DialogContent";
 import MuiDialogActions from "@material-ui/core/DialogActions/DialogActions";
 import Dialog from "@material-ui/core/Dialog/Dialog";
+import {Col, Row} from "reactstrap";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -134,19 +134,16 @@ const DialogTitle = withStyles(dialog_styles)((props) => {
     );
 });
 
-
+//todo add a loading indicator for time when details are loading
 export default function MediaDetails(props) {
     const styles = useStyles();
-    const {
-        button: buttonStyles,
-        ...contentStyles
-    } = useBlogTextInfoContentStyles();
     const shadowStyles = useOverShadowStyles();
     let linksPosition;
 
     const [details, setDetails] = useState();
     const [open, setOpen] = React.useState(false);
     const [selected_download, setSelectedDownload] = useState();
+    const [loading, setLoading] = useState(true);
 
     const handleClickOpen = (download) => {
         setOpen(true);
@@ -155,18 +152,23 @@ export default function MediaDetails(props) {
     const handleClose = () => {
         setOpen(false);
     };
-    //fetch data from server
+
     const {params} = props.match;
-    axios.post(configs.server_address + '/getMedia', {media_id: params.id}).then(res => {
-        if (res.data.success) {
-            //change state of all elements
-            setDetails(res.data.data);
-        } else {
-            alert(res.data.message);
-        }
-    }).catch(err => {
-        console.log(err);
-    });
+    //fetch data from server
+    useEffect(() => {
+        axios.post(configs.server_address + '/getMedia', {media_id: params.id}).then(res => {
+            if (res.data.success) {
+                //change state of all elements
+                setDetails(res.data.data);
+            } else {
+                alert(res.data.message);
+            }
+            setLoading(false);
+        }).catch(err => {
+            console.log(err);
+            setLoading(false);
+        });
+    }, []);
 
     return (
         <React.Fragment>
@@ -299,6 +301,7 @@ export default function MediaDetails(props) {
                         </div>
 
                     </Card>
+
                     {selected_download ? (
                         <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}
                                 fullWidth={true}>
@@ -323,7 +326,31 @@ export default function MediaDetails(props) {
                     ) : (null)}
 
                 </main>
-            ) : (null)}
+            ) : (!loading ? (
+                <div style={{backgroundColor: "#cfd8dc", paddingTop: 150, paddingBottom: 150}}>
+                    <Container>
+                        <Row className="justify-content-center">
+                            <Col md="6">
+                                <div className="clearfix">
+                                    <h1 className="float-left display-3 mr-4">404</h1>
+                                    <h4 className="pt-3">Oops! You're lost.</h4>
+                                    <p className="text-muted float-left">The page you are looking for was not found.</p>
+                                </div>
+                            </Col>
+                        </Row>
+                        <Row className={'justify-content-center'}>
+                            <Typography variant="h5" color="textPrimary" gutterBottom>
+                                You can view our <Link href={configs.website_address}> Home
+                                Page </Link> for more awesome content.
+                            </Typography>
+                        </Row>
+                    </Container>
+                </div>
+            ):(
+                <Typography variant="h5" color="textPrimary" gutterBottom>
+                    Loading....
+                </Typography>
+            ))}
 
             <WaveBorder
                 upperColor="#cfd8dc"

@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Button, Col, Container,Row} from 'reactstrap';
+import React, {Component, useEffect, useState} from 'react';
+import {Col, Container, Row} from 'reactstrap';
 import Header from "../widgets/Header";
 import CssBaseline from "@material-ui/core/CssBaseline/CssBaseline";
 import WaveBorder from "../widgets/WaveBorder";
@@ -9,13 +9,21 @@ import Typography from "@material-ui/core/Typography/Typography";
 import Link from "@material-ui/core/Link";
 
 class Page404 extends Component {
+
     render() {
         return (
-            <React.Fragment >
+            <React.Fragment>
                 <CssBaseline/>
                 <Header/>
-                <div style={{backgroundColor:"#cfd8dc", paddingTop: 150, paddingBottom:150}}>
-                    <Container >
+
+                <div style={{
+                    backgroundColor: "#cfd8dc",
+                    paddingTop: 150,
+                    paddingBottom: 150,
+                    justifyContent: 'center',
+                    display: 'flex'
+                }}>
+                    <Container>
                         <Row className="justify-content-center">
                             <Col md="6">
                                 <div className="clearfix">
@@ -27,8 +35,9 @@ class Page404 extends Component {
                             </Col>
                         </Row>
                         <Row className={'justify-content-center'}>
-                            <Typography  variant="h5" color="textPrimary" gutterBottom>
-                                You will be redirected to <Link href={configs.website_address}> Home Page </Link>in 5 seconds.
+                            <Typography variant="h5" color="textPrimary" gutterBottom>
+                                You can view our <Link href={configs.website_address}> Home
+                                Page </Link> for more awesome content.
                             </Typography>
                         </Row>
                     </Container>

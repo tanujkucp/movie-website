@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Toolbar from "@material-ui/core/Toolbar/Toolbar";
 import Typography from "@material-ui/core/Typography/Typography";
 import configs from "../../configs";

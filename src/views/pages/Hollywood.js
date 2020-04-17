@@ -1,19 +1,17 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
+import React, {useEffect, useState} from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import DeleteIcon from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
-
 import configs from './../../configs.json';
 import MediaCard from './../widgets/MediaCard';
 import Footer from './../widgets/Footer';
 import Header from './../widgets/Header';
 import WaveBorder from "../widgets/WaveBorder";
 import Paper from "@material-ui/core/Paper/Paper";
+import axios from "axios";
+import {Industry} from "../../enums";
 
 const useStyles = makeStyles((theme) => ({
     cardGrid: {
@@ -53,10 +51,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
 export default function Hollywood() {
     const classes = useStyles();
+
+    const [latest, setLatest] = useState();
+
+    //fetch data from server
+    useEffect(() => {
+        axios.post(configs.server_address + '/getLatest', {filters: {industry: Industry.HOLLYWOOD}}).then(res => {
+            if (res.data.success) {
+                //change state of all elements
+                setLatest(res.data.data);
+            } else {
+                alert(res.data.message);
+            }
+        }).catch(err => {
+            console.log(err);
+        });
+    }, []);
 
     return (
         <React.Fragment>
@@ -85,14 +97,16 @@ export default function Hollywood() {
                     </Grid>
                 </Paper>
 
-                <Container className={classes.cardGrid} maxWidth="md">
-                    <Grid container spacing={4}>
-                        {cards.map((card) => (
-                            <MediaCard card={card}/>
-                        ))}
-                    </Grid>
+                {latest?(
+                    <Container className={classes.cardGrid} maxWidth="md">
+                        <Grid container spacing={4}>
+                            {latest.map((card) => (
+                                <MediaCard card={card}/>
+                            ))}
+                        </Grid>
 
-                </Container>
+                    </Container>
+                ):(null)}
             </main>
 
             {/* Footer */}
