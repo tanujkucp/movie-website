@@ -1,10 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
@@ -30,20 +27,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
-export default function AddressForm() {
+export default function AddressForm(props) {
     const classes = useStyles();
-    const [industry, setIndustry] = React.useState(Industry.BOLLYWOOD);
-    const [media_type, setMediaType] = React.useState(MediaType.MOVIE);
-    const [personName, setPersonName] = React.useState([]);
-    const handleChangeIndustry = (event) => {
-        setIndustry(event.target.value);
-    };
-    const handleChangeMediaType = (event) => {
-        setMediaType(event.target.value);
-    };
+    const [data, setData] = useState(props.data);
+
     const handleChange = (event) => {
-        setPersonName(event.target.value);
+        let newData = {
+            ...data,
+            [event.target.name]: event.target.value
+        };
+        setData(newData);
+        props.getData(newData);
     };
 
     const ITEM_HEIGHT = 48;
@@ -57,17 +51,17 @@ export default function AddressForm() {
         },
     };
 
-    const names = [
-        'Oliver Hansen',
-        'Van Henry',
-        'April Tucker',
-        'Ralph Hubbard',
-        'Omar Alexander',
-        'Carlos Abbott',
-        'Miriam Wagner',
-        'Bradley Wilkerson',
-        'Virginia Andrews',
-        'Kelly Snyder',
+    const tagOptions = [
+        'Dual Audio',
+        'x264',
+        'x265 HEVC',
+        'Subs',
+        'BluRay',
+        'WebDL',
+        'HDRip',
+        'HQ',
+        'DD 5.1',
+        '10 Bit'
     ];
 
     return (
@@ -77,21 +71,30 @@ export default function AddressForm() {
                 <Grid item xs={12}>
                     <TextField
                         required
+                        value={data.title}
+                        name={'title'}
                         label="Media Title"
+                        onChange={handleChange}
                         fullWidth
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField
                         required
+                        value={data.language}
+                        name={'language'}
                         label="Language / Audio"
+                        onChange={handleChange}
                         fullWidth
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField
                         required
+                        value={data.IMDb_link}
+                        name={'IMDb_link'}
                         label="IMDb Link"
+                        onChange={handleChange}
                         fullWidth
                     />
                 </Grid>
@@ -99,21 +102,30 @@ export default function AddressForm() {
                 <Grid item xs={12} sm={4}>
                     <TextField
                         required
+                        value={data.release_year}
+                        name={'release_year'}
                         label="Release Year"
+                        onChange={handleChange}
                         fullWidth
                     />
                 </Grid>
                 <Grid item xs={12} sm={4}>
                     <TextField
                         required
+                        value={data.genre}
+                        name={'genre'}
                         label="Genre"
+                        onChange={handleChange}
                         fullWidth
                     />
                 </Grid>
                 <Grid item xs={12} sm={4}>
                     <TextField
                         required
-                        label="IMDb Rating "
+                        value={data.IMDb_rating}
+                        name={'IMDb_rating'}
+                        label="IMDb Rating"
+                        onChange={handleChange}
                         fullWidth
                     />
                 </Grid>
@@ -121,7 +133,7 @@ export default function AddressForm() {
                 <Grid item xs={12} sm={6}>
                     <FormControl className={classes.formControl} fullWidth>
                         <InputLabel id="demo-simple-select-label">Industry</InputLabel>
-                        <Select value={industry} onChange={handleChangeIndustry}>
+                        <Select value={data.industry} onChange={handleChange} name={'industry'}>
                             <MenuItem value={Industry.BOLLYWOOD}>{Industry.BOLLYWOOD}</MenuItem>
                             <MenuItem value={Industry.HOLLYWOOD}>{Industry.HOLLYWOOD}</MenuItem>
                             <MenuItem value={Industry.OTHER}>{Industry.OTHER}</MenuItem>
@@ -131,7 +143,7 @@ export default function AddressForm() {
                 <Grid item xs={12} sm={6}>
                     <FormControl className={classes.formControl} fullWidth>
                         <InputLabel id="demo-simple-select-label">Media Type</InputLabel>
-                        <Select value={media_type} onChange={handleChangeMediaType}>
+                        <Select value={data.media_type} onChange={handleChange} name={'media_type'}>
                             <MenuItem value={MediaType.MOVIE}>{MediaType.MOVIE}</MenuItem>
                             <MenuItem value={MediaType.WEBSERIES}>{MediaType.WEBSERIES}</MenuItem>
                             <MenuItem value={MediaType.DOCUMENTARY}>{MediaType.DOCUMENTARY}</MenuItem>
@@ -139,12 +151,13 @@ export default function AddressForm() {
                     </FormControl>
                 </Grid>
 
-                <Grid item xs={12} >
+                <Grid item xs={12}>
                     <FormControl className={classes.formControl} fullWidth>
                         <InputLabel>Add Some Tags</InputLabel>
                         <Select
                             multiple
-                            value={personName}
+                            value={data.tags}
+                            name={'tags'}
                             onChange={handleChange}
                             input={<Input id="select-multiple-chip"/>}
                             renderValue={(selected) => (
@@ -156,8 +169,8 @@ export default function AddressForm() {
                             )}
                             MenuProps={MenuProps}
                         >
-                            {names.map((name) => (
-                                <MenuItem key={name} value={name} >
+                            {tagOptions.map((name) => (
+                                <MenuItem key={name} value={name}>
                                     {name}
                                 </MenuItem>
                             ))}

@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, {Component} from 'react';
 import {Col, Container, Row} from 'reactstrap';
 import Header from "../widgets/Header";
 import CssBaseline from "@material-ui/core/CssBaseline/CssBaseline";

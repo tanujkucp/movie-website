@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Typography from "@material-ui/core/Typography/Typography";
-import {makeStyles} from "@material-ui/core";
 import Link from "@material-ui/core/Link/Link";
 import configs from "../../configs";
 

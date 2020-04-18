@@ -1,12 +1,32 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 
 
-export default function PaymentForm() {
+export default function UploadPart2(props) {
     const linkFields = [0, 1, 2, 3];
-    const links = ['', '', '', ''];
+    const [data, setData] = useState(props.data);
+    let links = data.screenshots;
+
+    const handleChange = (event) => {
+        let newData = {
+            ...data,
+            [event.target.name]: event.target.value
+        };
+        setData(newData);
+        props.getData(newData);
+    };
+
+    const handleSS = (event, field) => {
+        links[field] = event.target.value;
+        let newData = {
+            ...data,
+            screenshots: links
+        };
+        setData(newData);
+        props.getData(newData);
+    };
 
     return (
         <React.Fragment>
@@ -19,6 +39,9 @@ export default function PaymentForm() {
                         multiline
                         rowsMax={6}
                         variant="outlined"
+                        value={data.description}
+                        name={'description'}
+                        onChange={handleChange}
                     />
                 </Grid>
 
@@ -27,6 +50,9 @@ export default function PaymentForm() {
                         required
                         label="Youtube Trailer - Video ID"
                         fullWidth
+                        value={data.youtube_trailer_video_id}
+                        name={'youtube_trailer_video_id'}
+                        onChange={handleChange}
                     />
                 </Grid>
 
@@ -42,9 +68,8 @@ export default function PaymentForm() {
                             required
                             label={"Screenshot link #" + field}
                             fullWidth
-                            onChange={(event) => {
-                                links[field] = event.target.value
-                            }}
+                            value={links[field]}
+                            onChange={(event) => handleSS(event, field)}
                         />
                     </Grid>
                 ))}

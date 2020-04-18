@@ -32,6 +32,7 @@ import MuiDialogContent from "@material-ui/core/DialogContent/DialogContent";
 import MuiDialogActions from "@material-ui/core/DialogActions/DialogActions";
 import Dialog from "@material-ui/core/Dialog/Dialog";
 import {Col, Row} from "reactstrap";
+import {VideoResolution} from "../../enums";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -258,7 +259,7 @@ export default function MediaDetails(props) {
                                                 <CardHeader
                                                     title={download.quality}
                                                     titleTypographyProps={{align: 'center'}}
-                                                    action={download.quality === '1080p' ? <StarIcon/> : null}
+                                                    action={download.quality === VideoResolution.HDplus ? <StarIcon/> : null}
                                                     className={styles.cardHeader}
                                                 />
                                                 <CardContent>
