@@ -19,6 +19,7 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import configs from "../../configs";
 import {Industry, MediaType} from "../../enums";
+import LinearProgress from "@material-ui/core/LinearProgress/LinearProgress";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -58,11 +59,12 @@ function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-const steps = ['Basic Info', 'Add references', 'Add Links'];
+const steps = ['Basic Info', 'Add references', 'Add Download Links'];
 
 export default function AdminUpload() {
     const classes = useStyles();
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState();
     const [activeStep, setActiveStep] = useState(0);
     const [response, setResponse] = useState();
     const [data, setData] = useState({
@@ -80,12 +82,24 @@ export default function AdminUpload() {
         youtube_trailer_video_id: '',
         downloads: [],
         poster_link: ''
-
     });
 
+    const validate = () => {
+        if (data.title && data.language && data.IMDb_link && data.IMDb_rating && data.release_year && data.genre
+            && data.description && data.youtube_trailer_video_id && data.poster_link) {
+            //check downloads object
+            return data.downloads[0].quality.length > 0 && data.downloads[0].size.length > 0 && data.downloads[0].links.length > 0;
+        } else return false;
+    };
+
     const handleNext = () => {
-        if(activeStep===2) upload();
-        setActiveStep(activeStep + 1);
+        if (activeStep === 2) {
+            if (validate()) {
+                upload();
+                setActiveStep(activeStep + 1);
+            } else setError('Fill all details first!');
+        }
+        else setActiveStep(activeStep + 1);
     };
     const handleBack = () => {
         setActiveStep(activeStep - 1);
@@ -99,7 +113,8 @@ export default function AdminUpload() {
                 //change state of all elements
                 setResponse(res.data.data);
             } else {
-                alert(res.data.message);
+                //alert(res.data.message);
+                setError(res.data.message)
             }
             setLoading(false);
         }).catch(err => {
@@ -127,12 +142,12 @@ export default function AdminUpload() {
     };
 
     return (
-        <div style={{backgroundColor: '#cfd8dc', paddingTop: 20}}>
+        <div style={{backgroundColor: '#cfd8dc', paddingTop: 20,height: '100vh'}}>
             <Container component="main" className={classes.layout}>
 
-                <Snackbar open={false} autoHideDuration={5000} onClose={() => alert('something')}>
-                    <Alert severity="error" onClose={() => alert('something')}>
-                        This is an error message!
+                <Snackbar open={error} autoHideDuration={5000} onClose={() => setError(null)}>
+                    <Alert severity="error" onClose={() => setError(null)}>
+                        {error}
                     </Alert>
                 </Snackbar>
 
@@ -152,11 +167,9 @@ export default function AdminUpload() {
                     <React.Fragment>
                         {activeStep === steps.length ?
                             (loading ? (
-                                <Typography variant="h5" color="textPrimary" gutterBottom>
-                                    Loading....
-                                </Typography>
+                                <LinearProgress variant="query" color="secondary"/>
                             ) : (
-                               response ? (
+                                response ? (
                                     <React.Fragment>
                                         <Typography variant="h5" gutterBottom>
                                             Thank you for your upload.
@@ -166,11 +179,11 @@ export default function AdminUpload() {
                                             href={'#'}>here </Link>.
                                         </Typography>
                                     </React.Fragment>
-                               ):(
-                                   <Typography variant="h5" color="textPrimary" gutterBottom>
-                                       Error in upload....
-                                   </Typography>
-                               )
+                                ) : (
+                                    <Typography variant="h5" gutterBottom style={{color:'red'}}>
+                                        An error occurred in upload.
+                                    </Typography>
+                                )
                             ))
                             : (
                                 <React.Fragment>

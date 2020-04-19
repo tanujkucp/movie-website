@@ -33,6 +33,7 @@ import MuiDialogActions from "@material-ui/core/DialogActions/DialogActions";
 import Dialog from "@material-ui/core/Dialog/Dialog";
 import {Col, Row} from "reactstrap";
 import {VideoResolution} from "../../enums";
+import LinearProgress from "@material-ui/core/LinearProgress/LinearProgress";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -135,7 +136,6 @@ const DialogTitle = withStyles(dialog_styles)((props) => {
     );
 });
 
-//todo add a loading indicator for time when details are loading
 export default function MediaDetails(props) {
     const styles = useStyles();
     const shadowStyles = useOverShadowStyles();
@@ -169,13 +169,15 @@ export default function MediaDetails(props) {
             console.log(err);
             setLoading(false);
         });
-    }, []);
+    }, [params.id]);
 
     return (
         <React.Fragment>
             <CssBaseline/>
 
             <Header/>
+
+            {loading? ( <LinearProgress variant="query" color="secondary" />):(null)}
 
             {details ? (
                 <main style={{padding: 20, backgroundColor: '#cfd8dc',}}>
@@ -259,7 +261,8 @@ export default function MediaDetails(props) {
                                                 <CardHeader
                                                     title={download.quality}
                                                     titleTypographyProps={{align: 'center'}}
-                                                    action={download.quality === VideoResolution.HDplus ? <StarIcon/> : null}
+                                                    action={download.quality === VideoResolution.HDplus ?
+                                                        <StarIcon/> : null}
                                                     className={styles.cardHeader}
                                                 />
                                                 <CardContent>
@@ -347,11 +350,7 @@ export default function MediaDetails(props) {
                         </Row>
                     </Container>
                 </div>
-            ):(
-                <Typography variant="h5" color="textPrimary" gutterBottom>
-                    Loading....
-                </Typography>
-            ))}
+            ) : (null))}
 
             <WaveBorder
                 upperColor="#cfd8dc"

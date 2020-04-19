@@ -37,6 +37,7 @@ export default function UploadPart2(props) {
                         fullWidth
                         label="Short description / Storyline"
                         multiline
+                        required
                         rowsMax={6}
                         variant="outlined"
                         value={data.description}
@@ -45,13 +46,23 @@ export default function UploadPart2(props) {
                     />
                 </Grid>
 
-                <Grid item xs={12}>
+                <Grid item xs={6}>
                     <TextField
                         required
                         label="Youtube Trailer - Video ID"
                         fullWidth
                         value={data.youtube_trailer_video_id}
                         name={'youtube_trailer_video_id'}
+                        onChange={handleChange}
+                    />
+                </Grid>
+                <Grid item xs={6}>
+                    <TextField
+                        required
+                        label="Poster Image Link"
+                        fullWidth
+                        value={data.poster_link}
+                        name={'poster_link'}
                         onChange={handleChange}
                     />
                 </Grid>

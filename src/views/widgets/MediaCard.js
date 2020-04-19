@@ -40,7 +40,7 @@ export default function MediaCard(props) {
                 />
                 <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
-                        Sky is Pink
+                        {media.title}
                     </Typography>
                     <Grid container spacing={1}>
                         {media.tags.map(chip => (

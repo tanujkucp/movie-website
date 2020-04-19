@@ -12,6 +12,7 @@ import Paper from "@material-ui/core/Paper/Paper";
 import axios from "axios";
 import configs from "../../configs";
 import {Industry} from "../../enums";
+import LinearProgress from "@material-ui/core/LinearProgress/LinearProgress";
 
 const useStyles = makeStyles((theme) => ({
     cardGrid: {
@@ -20,12 +21,12 @@ const useStyles = makeStyles((theme) => ({
     },
     waveBorder: {
         paddingTop: theme.spacing(4),
+        marginTop:40
     },
     mainFeaturedPost: {
         position: 'relative',
         backgroundColor: theme.palette.grey[800],
         color: theme.palette.common.white,
-        marginBottom: theme.spacing(4),
         backgroundImage: 'url(https://images.unsplash.com/photo-1580194191675-f66754a68698?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80)',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
@@ -55,9 +56,11 @@ export default function Bollywood() {
     const classes = useStyles();
 
     const [latest, setLatest] = useState();
+    const [loading, setLoading] = useState(false);
 
     //fetch data from server
     useEffect(() => {
+        setLoading(true);
         axios.post(configs.server_address + '/getLatest', {filters: {industry: Industry.BOLLYWOOD}}).then(res => {
             if (res.data.success) {
                 //change state of all elements
@@ -65,8 +68,10 @@ export default function Bollywood() {
             } else {
                 alert(res.data.message);
             }
+            setLoading(false);
         }).catch(err => {
             console.log(err);
+            setLoading(false);
         });
     }, []);
 
@@ -96,6 +101,7 @@ export default function Bollywood() {
                         </Grid>
                     </Grid>
                 </Paper>
+                {loading? ( <LinearProgress variant="query" color="secondary" />):(null)}
 
                 {latest?(
                     <Container className={classes.cardGrid} maxWidth="md">

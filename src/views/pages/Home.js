@@ -12,6 +12,7 @@ import MediaCard from './../widgets/MediaCard';
 import Footer from './../widgets/Footer';
 import Header from './../widgets/Header';
 import WaveBorder from "../widgets/WaveBorder";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 const useStyles = makeStyles((theme) => ({
     heroContent: {
@@ -36,9 +37,11 @@ export default function Home() {
     const classes = useStyles();
 
     const [latest, setLatest] = useState();
+    const [loading, setLoading] = useState(false);
 
     //fetch data from server
     useEffect(() => {
+        setLoading(true);
         axios.post(configs.server_address + '/getLatest').then(res => {
             if (res.data.success) {
                 //change state of all elements
@@ -46,8 +49,10 @@ export default function Home() {
             } else {
                 alert(res.data.message);
             }
+            setLoading(false);
         }).catch(err => {
             console.log(err);
+            setLoading(false);
         });
     }, []);
 
@@ -91,6 +96,8 @@ export default function Home() {
                         </div>
                     </Container>
                 </div>
+
+                {loading? ( <LinearProgress variant="query" color="secondary" />):(null)}
                 <Container className={classes.cardGrid} maxWidth="md">
                     {/* End hero unit */}
                     {latest? (

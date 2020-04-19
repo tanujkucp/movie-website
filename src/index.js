@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import {Route, BrowserRouter as Router, Switch} from 'react-router-dom'
+import LinearProgress from "@material-ui/core/LinearProgress/LinearProgress";
 
 
 const Home = React.lazy(() => import('./views/pages/Home'));
@@ -10,12 +11,11 @@ const Page404 = React.lazy(() => import('./views/pages/Page404'));
 const MediaDetails = React.lazy(() => import('./views/pages/MediaDetails'));
 const Bollywood = React.lazy(() => import('./views/pages/Bollywood'));
 const Hollywood = React.lazy(() => import('./views/pages/Hollywood'));
-const WebSeries= React.lazy(() => import('./views/pages/WebSeries'));
-const Search= React.lazy(() => import('./views/pages/Search'));
-const AdminUpload= React.lazy(() => import('./views/pages/AdminUpload'));
+const WebSeries = React.lazy(() => import('./views/pages/WebSeries'));
+const Search = React.lazy(() => import('./views/pages/Search'));
+const AdminUpload = React.lazy(() => import('./views/pages/AdminUpload'));
 
-//todo add a loading indicator here
-const loading = () => <div className="animated fadeIn pt-3 text-center">Loading...</div>;
+const loading = () => <LinearProgress variant="query" style={{width: '100%'}} color="secondary"/>;
 
 const routing = (
     <Router>
@@ -28,7 +28,7 @@ const routing = (
                 <Route path="/webseries" component={WebSeries}/>
                 <Route path="/search" component={Search}/>
                 <Route path="/adminUpload" component={AdminUpload}/>
-                <Route path="/m/:id" component={MediaDetails} />
+                <Route path="/m/:id" component={MediaDetails}/>
                 <Route component={Page404}/>
             </Switch>
         </React.Suspense>

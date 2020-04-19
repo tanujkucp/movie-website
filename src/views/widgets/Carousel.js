@@ -4,10 +4,6 @@ import Carousel from 'react-bootstrap/Carousel';
 
 
 export default class Carousel2 extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (<div style={{width:'100%', padding: 20}}>
                 <Carousel interval={2000}>

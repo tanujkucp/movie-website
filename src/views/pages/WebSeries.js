@@ -12,6 +12,7 @@ import Paper from "@material-ui/core/Paper/Paper";
 import axios from "axios";
 import configs from "../../configs";
 import { MediaType} from "../../enums";
+import LinearProgress from "@material-ui/core/LinearProgress/LinearProgress";
 
 const useStyles = makeStyles((theme) => ({
     cardGrid: {
@@ -25,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
         backgroundColor: theme.palette.grey[800],
         color: theme.palette.common.white,
-        marginBottom: theme.spacing(4),
         backgroundImage: 'url(https://wallpaperaccess.com/full/782186.jpg)',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
@@ -54,9 +54,11 @@ export default function WebSeries() {
     const classes = useStyles();
 
     const [latest, setLatest] = useState();
+    const [loading, setLoading] = useState(false);
 
     //fetch data from server
     useEffect(() => {
+        setLoading(true);
         axios.post(configs.server_address + '/getLatest', {filters: {media_type: MediaType.WEBSERIES}}).then(res => {
             if (res.data.success) {
                 //change state of all elements
@@ -64,8 +66,10 @@ export default function WebSeries() {
             } else {
                 alert(res.data.message);
             }
+            setLoading(false);
         }).catch(err => {
             console.log(err);
+            setLoading(false);
         });
     }, []);
 
@@ -75,7 +79,7 @@ export default function WebSeries() {
 
             <Header/>
 
-            <main style={{backgroundColor: "#cfd8dc"}}>
+            <main style={{backgroundColor: "#cfd8dc",height: '100vh'}}>
 
                 <Paper className={classes.mainFeaturedPost}>
                     {/* Increase the priority of the hero background image */}
@@ -95,6 +99,8 @@ export default function WebSeries() {
                         </Grid>
                     </Grid>
                 </Paper>
+
+                {loading? ( <LinearProgress variant="query" color="secondary" />):(null)}
 
                 {latest?(
                     <Container className={classes.cardGrid} maxWidth="md">
