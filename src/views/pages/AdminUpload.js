@@ -120,6 +120,7 @@ export default function AdminUpload() {
         }).catch(err => {
             console.log(err);
             setLoading(false);
+            if(err.response.data) setError(err.response.data.message);
         });
     };
 
@@ -138,7 +139,7 @@ export default function AdminUpload() {
 
     const getData = (d) => {
         setData(d);
-        console.log(d);
+      //  console.log(d);
     };
 
     return (

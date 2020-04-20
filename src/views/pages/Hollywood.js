@@ -13,6 +13,8 @@ import Paper from "@material-ui/core/Paper/Paper";
 import axios from "axios";
 import {Industry} from "../../enums";
 import LinearProgress from "@material-ui/core/LinearProgress/LinearProgress";
+import {Col, Row} from "reactstrap";
+import Link from "@material-ui/core/Link/Link";
 
 const useStyles = makeStyles((theme) => ({
     cardGrid: {
@@ -101,9 +103,9 @@ export default function Hollywood() {
                     </Grid>
                 </Paper>
 
-                {loading? ( <LinearProgress variant="query" color="secondary" />):(null)}
+                {loading ? (<LinearProgress variant="query" color="secondary"/>) : (null)}
 
-                {latest?(
+                {latest ? (
                     <Container className={classes.cardGrid} maxWidth="md">
                         <Grid container spacing={4}>
                             {latest.map((card) => (
@@ -112,7 +114,28 @@ export default function Hollywood() {
                         </Grid>
 
                     </Container>
-                ):(null)}
+                ) : (null)}
+
+                {(!loading && !latest) ?
+                    (<div style={{backgroundColor: "#cfd8dc", paddingTop: 150, paddingBottom: 150}}>
+                            <Container>
+                                <Row className="justify-content-center">
+                                    <Col md="6">
+                                        <div className="clearfix">
+                                            <h4 className="pt-3">Oops! You're lost.</h4>
+                                            <p className="text-muted float-left">No Movie / Web Series were found in this section.</p>
+                                        </div>
+                                    </Col>
+                                </Row>
+                                <Row className={'justify-content-center'}>
+                                    <Typography variant="h5" color="textPrimary" gutterBottom>
+                                        You can search again or view our <Link href={configs.website_address}> Home Page </Link> for more awesome content.
+                                    </Typography>
+                                </Row>
+                            </Container>
+                        </div>
+                    ) : (null)}
+
             </main>
 
             {/* Footer */}

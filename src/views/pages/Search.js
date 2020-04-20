@@ -44,7 +44,13 @@ export default function Search() {
         setAwaiting(true);
         setResponse(null);
 
-        index.search(text).then(({hits}) => {
+        let keyword = text.trim();
+        if(keyword.length <1){
+            setLoading(false);
+            return;
+        }
+
+        index.search(keyword).then(({hits}) => {
             if (hits.length > 0) setResponse(hits);
             setLoading(false);
         }).catch(err => {
@@ -52,19 +58,6 @@ export default function Search() {
             setLoading(false);
         });
 
-        // axios.post(configs.server_address + '/search', {title: text}).then(res => {
-        //     if (res.data.success) {
-        //         //change state of all elements
-        //         setResponse(res.data.data);
-        //     } else {
-        //         alert(res.data.message);
-        //         //setError(res.data.message)
-        //     }
-        //     setLoading(false);
-        // }).catch(err => {
-        //     console.log(err);
-        //     setLoading(false);
-        // });
     };
 
     return (

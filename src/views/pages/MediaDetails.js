@@ -177,7 +177,7 @@ export default function MediaDetails(props) {
 
             <Header/>
 
-            {loading? ( <LinearProgress variant="query" color="secondary" />):(null)}
+            {loading ? (<LinearProgress variant="query" color="secondary"/>) : (null)}
 
             {details ? (
                 <main style={{padding: 20, backgroundColor: '#cfd8dc',}}>
@@ -193,10 +193,10 @@ export default function MediaDetails(props) {
                             </Typography>
                             <div style={{paddingTop: 10}}>
                                 <Typography align="center" color="textPrimary">
-                                    {details.release_year} ‧ {details.genre} ‧ {details.IMDb_rating}/10 ‧ <Link
-                                    href={details.IMDb_link}>
+                                    {details.release_year} ‧ {details.genre} ‧ {details.IMDb_rating}/10 ‧ <a
+                                    href={details.IMDb_link} target="_blank" rel="noopener noreferrer">
                                     IMDb
-                                </Link>
+                                </a>
                                 </Typography>
 
                                 <Typography variant="h6" align="center" color="textPrimary">
@@ -246,8 +246,8 @@ export default function MediaDetails(props) {
 
                             <Typography variant="h5" align="center"
                                         style={{marginTop: 20, color: 'red', marginBottom: 10}}>
-                                * Report any broken/dead links in our <Link href={configs.telegram_channel_link}>
-                                Telegram Group</Link> *
+                                * Report any broken/dead links in our <a target="_blank"  href={configs.telegram_channel_link} rel="noopener noreferrer">
+                                Telegram Group</a> *
                             </Typography>
 
                             <Container maxWidth="md" component="main" ref={(el) => {
@@ -315,8 +315,7 @@ export default function MediaDetails(props) {
                             <DialogContent dividers>
                                 {selected_download.links.map(item => (
                                     <Typography gutterBottom>
-                                        {item.label} : <Link
-                                        href={item.link}>{item.link}</Link>
+                                        {item.label} : <a href={item.link} target="_blank" rel="noopener noreferrer">{item.link}</a>
                                     </Typography>
                                 ))}
 

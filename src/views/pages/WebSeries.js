@@ -13,6 +13,8 @@ import axios from "axios";
 import configs from "../../configs";
 import { MediaType} from "../../enums";
 import LinearProgress from "@material-ui/core/LinearProgress/LinearProgress";
+import {Col, Row} from "reactstrap";
+import Link from "@material-ui/core/Link/Link";
 
 const useStyles = makeStyles((theme) => ({
     cardGrid: {
@@ -79,7 +81,7 @@ export default function WebSeries() {
 
             <Header/>
 
-            <main style={{backgroundColor: "#cfd8dc",height: '100vh'}}>
+            <main style={{backgroundColor: "#cfd8dc"}}>
 
                 <Paper className={classes.mainFeaturedPost}>
                     {/* Increase the priority of the hero background image */}
@@ -112,6 +114,27 @@ export default function WebSeries() {
 
                     </Container>
                 ):(null)}
+
+                {(!loading && !latest) ?
+                    (<div style={{backgroundColor: "#cfd8dc", paddingTop: 150, paddingBottom: 150}}>
+                            <Container>
+                                <Row className="justify-content-center">
+                                    <Col md="6">
+                                        <div className="clearfix">
+                                            <h4 className="pt-3">Oops! You're lost.</h4>
+                                            <p className="text-muted float-left">No Movie / Web Series were found in this section.</p>
+                                        </div>
+                                    </Col>
+                                </Row>
+                                <Row className={'justify-content-center'}>
+                                    <Typography variant="h5" color="textPrimary" gutterBottom>
+                                        You can search again or view our <Link href={configs.website_address}> Home Page </Link> for more awesome content.
+                                    </Typography>
+                                </Row>
+                            </Container>
+                        </div>
+                    ) : (null)}
+
             </main>
 
             {/* Footer */}
