@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -20,6 +19,7 @@ import Button from "@material-ui/core/Button";
 import configs from "../../configs";
 import {Industry, MediaType} from "../../enums";
 import LinearProgress from "@material-ui/core/LinearProgress/LinearProgress";
+import TextField from "@material-ui/core/TextField/TextField";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -67,6 +67,7 @@ export default function AdminUpload() {
     const [error, setError] = useState();
     const [activeStep, setActiveStep] = useState(0);
     const [response, setResponse] = useState();
+    const [user_secret, setSecret] = useState('');
     const [data, setData] = useState({
         industry: Industry.BOLLYWOOD,
         media_type: MediaType.MOVIE,
@@ -95,9 +96,10 @@ export default function AdminUpload() {
     const handleNext = () => {
         if (activeStep === 2) {
             if (validate()) {
-                upload();
+                //upload();
                 setActiveStep(activeStep + 1);
             } else setError('Fill all details first!');
+           // setActiveStep(activeStep + 1);
         }
         else setActiveStep(activeStep + 1);
     };
@@ -108,7 +110,7 @@ export default function AdminUpload() {
     const upload = () => {
         setLoading(true);
         console.log(data);
-        axios.post(configs.server_address + '/saveMedia', {user_secret: 'abcdefghijklmn', data: data}).then(res => {
+        axios.post(configs.server_address + '/saveMedia', {user_secret: user_secret, data: data}).then(res => {
             if (res.data.success) {
                 //change state of all elements
                 setResponse(res.data.data);
@@ -120,7 +122,7 @@ export default function AdminUpload() {
         }).catch(err => {
             console.log(err);
             setLoading(false);
-            if(err.response.data) setError(err.response.data.message);
+            if(err.response) setError(err.response.data.message);
         });
     };
 
@@ -143,7 +145,7 @@ export default function AdminUpload() {
     };
 
     return (
-        <div style={{backgroundColor: '#cfd8dc', paddingTop: 20,height: '100vh'}}>
+        <div style={{backgroundColor: '#cfd8dc', paddingTop: 20}}>
             <Container component="main" className={classes.layout}>
 
                 <Snackbar open={error} autoHideDuration={5000} onClose={() => setError(null)}>
@@ -176,14 +178,32 @@ export default function AdminUpload() {
                                             Thank you for your upload.
                                         </Typography>
                                         <Typography variant="subtitle1">
-                                            Your upload ID is {response.media_id} . You can check the details page <Link
-                                            href={'#'}>here </Link>.
+                                            Your upload ID is {response.media_id} . You can check the details page <a target="_blank" rel="noopener noreferrer"
+                                            href={configs.website_address+'m/'+ response.media_id}>here </a>.
                                         </Typography>
                                     </React.Fragment>
                                 ) : (
-                                    <Typography variant="h5" gutterBottom style={{color:'red'}}>
-                                        An error occurred in upload.
-                                    </Typography>
+                                    <div>
+                                    <TextField
+                                        variant="outlined"
+                                        margin="normal"
+                                        fullWidth
+                                        multiline
+                                        rowsMax={6}
+                                        label="Enter Your Secret Key"
+                                        value={user_secret}
+                                        onChange={(e) => setSecret(e.target.value)}
+                                        style={{backgroundColor: '#eee'}}
+                                    />
+                                        <Button
+                                            fullWidth
+                                            variant="contained"
+                                            color="primary"
+                                            onClick={upload}
+                                        >
+                                            Verify and Upload
+                                        </Button>
+                                    </div>
                                 )
                             ))
                             : (
@@ -201,7 +221,7 @@ export default function AdminUpload() {
                                             onClick={handleNext}
                                             className={classes.button}
                                         >
-                                            {activeStep === steps.length - 1 ? 'Confirm Upload' : 'Next'}
+                                            {activeStep === steps.length - 1 ? 'Confirm All' : 'Next'}
                                         </Button>
                                     </div>
                                 </React.Fragment>

@@ -81,7 +81,7 @@ export default function Search() {
                         style={{width: '50%', backgroundColor: '#fff', borderRadius: 10, borderColor: 'blue'}}
                     />
                     <IconButton type="submit" onClick={search}
-                                style={{marginLeft: 20, backgroundColor: 'white'}} aria-label="search">
+                                style={{marginLeft: 20, backgroundColor: '#2196f3'}} aria-label="search">
                         <SearchIcon/>
                     </IconButton>
                 </div>

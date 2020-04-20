@@ -15,6 +15,7 @@ import {Industry} from "../../enums";
 import LinearProgress from "@material-ui/core/LinearProgress/LinearProgress";
 import {Col, Row} from "reactstrap";
 import Link from "@material-ui/core/Link/Link";
+import back_image from './../../assets/img/bollywood.jpg';
 
 const useStyles = makeStyles((theme) => ({
     cardGrid: {
@@ -28,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
         backgroundColor: theme.palette.grey[800],
         color: theme.palette.common.white,
-        backgroundImage: 'url(https://images.unsplash.com/photo-1580194191675-f66754a68698?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80)',
+        backgroundImage: `url(${back_image})`,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',

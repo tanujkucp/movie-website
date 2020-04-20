@@ -8,7 +8,9 @@ import Link from "@material-ui/core/Link";
 import DoneIcon from "@material-ui/icons/Done";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
-import DeleteIcon from "@material-ui/icons/Delete"
+import CancelIcon from '@material-ui/icons/Cancel';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 
 export default function UploadPart3(props) {
@@ -117,7 +119,7 @@ export default function UploadPart3(props) {
                                                                   marginTop: -10,
                                                                   color: 'red'
                                                               }}>
-                                        <DeleteIcon/>
+                                        <CancelIcon/>
                                     </IconButton>) : (null)}
 
                                     <Typography variant="h6" align={'center'}
@@ -175,7 +177,7 @@ export default function UploadPart3(props) {
                                 {dl.links.map((link) => (
                                     <Grid item xs={12} key={link.link}>
                                         <Typography variant="subtitle1" style={{marginBottom: -20}} noWrap={true}>
-                                            <DoneIcon/>{link.label} : <Link href={link.link}> {link.link}</Link>
+                                            <DoneIcon color={'primary'}/>{link.label} : <Link href={link.link}> {link.link}</Link>
                                         </Typography>
                                     </Grid>
                                 ))}
@@ -210,7 +212,9 @@ export default function UploadPart3(props) {
                                 <Grid item xs={6}>
                                     <Button variant={'contained'} fullWidth
                                             disabled={link.label.length < 1 || link.link.length < 1}
-                                            onClick={() => addLink(index)}>Add</Button>
+                                            onClick={() => addLink(index)}
+                                            startIcon={<AddCircleOutlineIcon/>}
+                                    >Add</Button>
                                 </Grid>
 
                             </Grid>

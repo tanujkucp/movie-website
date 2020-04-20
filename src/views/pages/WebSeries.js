@@ -15,6 +15,7 @@ import { MediaType} from "../../enums";
 import LinearProgress from "@material-ui/core/LinearProgress/LinearProgress";
 import {Col, Row} from "reactstrap";
 import Link from "@material-ui/core/Link/Link";
+import back_image from './../../assets/img/webseries.jpg';
 
 const useStyles = makeStyles((theme) => ({
     cardGrid: {
@@ -28,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
         backgroundColor: theme.palette.grey[800],
         color: theme.palette.common.white,
-        backgroundImage: 'url(https://wallpaperaccess.com/full/782186.jpg)',
+        backgroundImage: `url(${back_image})`,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',

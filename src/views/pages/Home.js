@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import DeleteIcon from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -13,12 +12,16 @@ import Footer from './../widgets/Footer';
 import Header from './../widgets/Header';
 import WaveBorder from "../widgets/WaveBorder";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import TelegramIcon from '@material-ui/icons/Telegram';
+import back_image from './../../assets/img/deadpool.png';
+
 
 const useStyles = makeStyles((theme) => ({
     heroContent: {
         backgroundColor: theme.palette.background.paper,
         padding: theme.spacing(8, 0, 6),
-        paddingTop: 10
+        paddingTop: 10,
+        backgroundImage: `url(${back_image})`
     },
     heroButtons: {
         marginTop: theme.spacing(4),
@@ -83,15 +86,11 @@ export default function Home() {
                         <div className={classes.heroButtons}>
                             <Grid container spacing={2} justify="center">
                                 <Grid item>
-                                    <Button variant="contained" color="primary" startIcon={<DeleteIcon/>}>
-                                        Telegram Channel
+                                    <Button variant="contained" color="primary" startIcon={<TelegramIcon/>}>
+                                         See our Telegram Channel
                                     </Button>
                                 </Grid>
-                                <Grid item>
-                                    <Button variant="outlined" color="primary" startIcon={<DeleteIcon/>}>
-                                        Secondary action
-                                    </Button>
-                                </Grid>
+
                             </Grid>
                         </div>
                     </Container>

@@ -82,8 +82,8 @@ export default function SignIn() {
                 setLoading(false);
             }).catch((err) => {
             setLoading(false);
-            console.log(err.response.data);
-            if (err.response.data) setError(err.response.data.message);
+            console.log(err);
+            if (err.response) setError(err.response.data.message);
         })
     };
 
@@ -98,14 +98,14 @@ export default function SignIn() {
                 setLoading(false);
             }).catch((err) => {
             setLoading(false);
-            console.log(err.response.data);
-            if (err.response.data) setError(err.response.data.message);
+            console.log(err);
+            if (err.response) setError(err.response.data.message);
         })
     };
 
 
     return (
-        <div style={{backgroundColor: '#cfd8dc', height: '100vh'}}>
+        <div style={{backgroundColor: '#cfd8dc'}}>
             {loading ? (<LinearProgress variant="query" color="secondary"/>) : (null)}
             <Container component="main" maxWidth="sm" style={{backgroundColor: '#cfd8dc', paddingTop: 10}}>
 

@@ -13,7 +13,6 @@ import Typography from "@material-ui/core/Typography/Typography";
 import Grid from "@material-ui/core/Grid/Grid";
 import Chip from "@material-ui/core/Chip/Chip";
 import DoneIcon from '@material-ui/icons/Done';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import configs from "../../configs";
 import Link from "@material-ui/core/Link/Link";
 import WaveBorder from "../widgets/WaveBorder";
@@ -22,7 +21,7 @@ import Carousel from '../widgets/Carousel';
 import Container from "@material-ui/core/Container";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardActions from "@material-ui/core/CardActions";
-import StarIcon from '@material-ui/icons/StarBorder';
+import StarIcon from '@material-ui/icons/Star';
 import YouTube from "react-youtube";
 import axios from "axios";
 import MuiDialogTitle from "@material-ui/core/DialogTitle/DialogTitle";
@@ -34,7 +33,9 @@ import Dialog from "@material-ui/core/Dialog/Dialog";
 import {Col, Row} from "reactstrap";
 import {VideoResolution} from "../../enums";
 import LinearProgress from "@material-ui/core/LinearProgress/LinearProgress";
-
+import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -206,7 +207,10 @@ export default function MediaDetails(props) {
                                 <Grid container spacing={1} style={{paddingLeft: 10, paddingTop: 20}}>
                                     {details.tags.map(chip => (
                                         <Grid item key={chip}>
-                                            <Chip icon={<DoneIcon/>} size="medium" label={chip}/>
+                                            <Chip
+                                                style={{backgroundColor: '#2196f3', color: 'white', fontWeight: 'bold'}}
+                                                icon={<DoneIcon style={{color: '#4caf50'}}/>} size="medium"
+                                                label={chip}/>
                                         </Grid>)
                                     )}
                                 </Grid>
@@ -219,7 +223,7 @@ export default function MediaDetails(props) {
                                     fullWidth
                                     className={styles.button}
                                     onClick={() => linksPosition.scrollIntoView({behavior: "smooth"})}
-                                    startIcon={<CloudUploadIcon/>}>
+                                    startIcon={<CloudDownloadIcon/>}>
                                     Download Now
                                 </Button>
                             </div>
@@ -246,7 +250,9 @@ export default function MediaDetails(props) {
 
                             <Typography variant="h5" align="center"
                                         style={{marginTop: 20, color: 'red', marginBottom: 10}}>
-                                * Report any broken/dead links in our <a target="_blank"  href={configs.telegram_channel_link} rel="noopener noreferrer">
+                                * Report any broken/dead links in our <a target="_blank"
+                                                                         href={configs.telegram_channel_link}
+                                                                         rel="noopener noreferrer">
                                 Telegram Group</a> *
                             </Typography>
 
@@ -262,12 +268,13 @@ export default function MediaDetails(props) {
                                                     title={download.quality}
                                                     titleTypographyProps={{align: 'center'}}
                                                     action={download.quality === VideoResolution.HDplus ?
-                                                        <StarIcon/> : null}
+                                                        <StarIcon style={{color: '#f57c00'}}/> : null}
                                                     className={styles.cardHeader}
                                                 />
                                                 <CardContent>
                                                     <div className={styles.cardPricing}>
-                                                        <Typography component="h4" variant="h4" color="textPrimary">
+                                                        <Typography component="h4" variant="h4"
+                                                                    style={{color: "#2196f3"}}>
                                                             {download.size}
                                                         </Typography>
                                                     </div>
@@ -296,10 +303,15 @@ export default function MediaDetails(props) {
                             <Divider variant="middle" style={{marginTop: 10, marginBottom: 10}}/>
                             <div style={{flexDirection: 'row', display: 'flex', justifyContent: 'center'}}>
                                 <Typography color="textPrimary">
-                                    <StarIcon/> April 9,2020
+                                    <AccessTimeIcon/> {new Date(details.created_at._seconds * 1000).toLocaleDateString(undefined, {
+                                    weekday: 'long',
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric'
+                                })}
                                 </Typography>
                                 <Typography color="textPrimary" style={{marginLeft: 20}}>
-                                    <StarIcon/> Uploaded by {details.username}
+                                    <AccountCircleIcon/> Uploaded by {details.username}
                                 </Typography>
                             </div>
                         </div>
@@ -315,7 +327,8 @@ export default function MediaDetails(props) {
                             <DialogContent dividers>
                                 {selected_download.links.map(item => (
                                     <Typography gutterBottom>
-                                        {item.label} : <a href={item.link} target="_blank" rel="noopener noreferrer">{item.link}</a>
+                                        {item.label} : <a href={item.link} target="_blank"
+                                                          rel="noopener noreferrer">{item.link}</a>
                                     </Typography>
                                 ))}
 

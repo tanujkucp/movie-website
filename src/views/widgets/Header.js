@@ -7,7 +7,7 @@ import {makeStyles} from "@material-ui/core";
 import logo from './../../assets/logo.png';
 import Link from "@material-ui/core/Link/Link";
 import Button from "@material-ui/core/Button";
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles((theme) => ({
     icon: {
@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
     link: {
         margin: theme.spacing(1, 1.5),
         color: 'white',
-
     },
 }));
 
@@ -48,7 +47,7 @@ export default function Header() {
                         <Link variant="button" color="textPrimary" href="/search" className={classes.link}>
                             <Button variant="contained"
                                     color="default"
-                                    startIcon={<CloudUploadIcon />}
+                                    startIcon={<SearchIcon />}
                             >Search
                             </Button>
                         </Link>
