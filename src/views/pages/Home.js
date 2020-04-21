@@ -14,6 +14,10 @@ import WaveBorder from "../widgets/WaveBorder";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import TelegramIcon from '@material-ui/icons/Telegram';
 import back_image from './../../assets/img/deadpool.png';
+import {KeyboardArrowLeft, KeyboardArrowRight} from "@material-ui/icons";
+import Card from "@material-ui/core/Card/Card";
+import {Col, Row} from "reactstrap";
+import Link from "@material-ui/core/Link/Link";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -29,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
     cardGrid: {
         paddingTop: theme.spacing(8),
         paddingBottom: theme.spacing(8),
+        justifyContent: 'center'
     },
     waveBorder: {
         paddingTop: theme.spacing(4),
@@ -41,11 +46,14 @@ export default function Home() {
 
     const [latest, setLatest] = useState();
     const [loading, setLoading] = useState(false);
+    const [responses, setResponses] = useState([]);
 
     //fetch data from server
-    useEffect(() => {
-        setLoading(true);
-        axios.post(configs.server_address + '/getLatest').then(res => {
+    const loadData = (timestamp) => {
+        let filters = {};
+        if (timestamp) filters.timestamp = timestamp;
+
+        axios.post(configs.server_address + '/getLatest', {filters: filters}).then(res => {
             if (res.data.success) {
                 //change state of all elements
                 setLatest(res.data.data);
@@ -56,8 +64,29 @@ export default function Home() {
         }).catch(err => {
             console.log(err);
             setLoading(false);
+            setLatest(null);
         });
+    };
+
+    useEffect(() => {
+        setLoading(true);
+        loadData();
     }, []);
+
+    const handleBack = () => {
+        let oldRes = responses;
+        let l = oldRes.pop();
+        setResponses(oldRes);
+        setLatest(l);
+    };
+    const handleNext = () => {
+        setLoading(true);
+        let newRes = responses;
+        newRes.push(latest);
+        //  console.log(newRes);
+        setResponses(newRes);
+        loadData(latest[latest.length - 1].created_at);
+    };
 
     return (
         <React.Fragment>
@@ -71,7 +100,7 @@ export default function Home() {
                 animationNegativeDelay={2}
             />
 
-            <main style={{backgroundColor:"#cfd8dc"}}>
+            <main style={{backgroundColor: "#cfd8dc"}}>
                 {/* Hero unit */}
                 <div className={classes.heroContent}>
                     <Container maxWidth="sm">
@@ -87,7 +116,7 @@ export default function Home() {
                             <Grid container spacing={2} justify="center">
                                 <Grid item>
                                     <Button variant="contained" color="primary" startIcon={<TelegramIcon/>}>
-                                         See our Telegram Channel
+                                        See our Telegram Channel
                                     </Button>
                                 </Grid>
 
@@ -96,16 +125,57 @@ export default function Home() {
                     </Container>
                 </div>
 
-                {loading? ( <LinearProgress variant="query" color="secondary" />):(null)}
+                {loading ? (<LinearProgress variant="query" color="secondary"/>) : (null)}
                 <Container className={classes.cardGrid} maxWidth="md">
                     {/* End hero unit */}
-                    {latest? (
-                        <Grid container spacing={4}>
-                            {latest.map((card) => (
-                                <MediaCard card={card}/>
-                            ))}
-                        </Grid>
-                    ):(null)}
+                    {latest ? (<div>
+                            <Grid container spacing={4}>
+                                {latest.map((card) => (
+                                    <MediaCard card={card} key={card.title}/>
+                                ))}
+                            </Grid>
+                            <div style={{justifyContent: 'center', display: 'flex'}}>
+                                <Card style={{
+                                    justifyContent: 'space-between',
+                                    display: 'flex',
+                                    marginTop: 20,
+                                    width: '60%'
+                                }}>
+                                    <Button onClick={handleBack} disabled={responses.length < 1}>
+                                        {<KeyboardArrowLeft/>}
+                                        Back
+                                    </Button>
+                                    <Typography style={{alignSelf: 'center'}}>See more results</Typography>
+                                    <Button onClick={handleNext}>
+                                        Next
+                                        {<KeyboardArrowRight/>}
+                                    </Button>
+                                </Card>
+                            </div>
+                        </div>
+                    ) : (null)}
+
+                    {(!loading && !latest) ?
+                        (<div style={{backgroundColor: "#cfd8dc", paddingTop: 150, paddingBottom: 150}}>
+                                <Container>
+                                    <Row className="justify-content-center">
+                                        <Col md="6">
+                                            <div className="clearfix">
+                                                <h4 className="pt-3">Oops! You're lost.</h4>
+                                                <p className="text-muted float-left">No Movie / Web Series were found in
+                                                    this section.</p>
+                                            </div>
+                                        </Col>
+                                    </Row>
+                                    <Row className={'justify-content-center'}>
+                                        <Typography variant="h5" color="textPrimary" gutterBottom>
+                                            You can <Link href={"/search"}>search </Link> or view our <Link
+                                            href={configs.website_address}> Home Page </Link> for more awesome content.
+                                        </Typography>
+                                    </Row>
+                                </Container>
+                            </div>
+                        ) : (null)}
 
 
                 </Container>

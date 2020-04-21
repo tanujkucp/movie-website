@@ -45,7 +45,7 @@ export default function MediaCard(props) {
                     <Grid container spacing={1}>
                         {media.tags.map(chip => (
                             <Grid item key={chip}>
-                                <Chip style={{backgroundColor: '#2196f3', color:'white', fontWeight:'bold'}}
+                                <Chip style={{backgroundColor: '#1976d2', color:'white', fontWeight:'bold'}}
                                       icon={<DoneIcon style={{color:'#4caf50'}}/>}
                                       size="medium" label={chip}/>
                             </Grid>)

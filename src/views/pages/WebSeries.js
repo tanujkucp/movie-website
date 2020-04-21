@@ -11,11 +11,14 @@ import WaveBorder from "../widgets/WaveBorder";
 import Paper from "@material-ui/core/Paper/Paper";
 import axios from "axios";
 import configs from "../../configs";
-import { MediaType} from "../../enums";
+import {MediaType} from "../../enums";
 import LinearProgress from "@material-ui/core/LinearProgress/LinearProgress";
 import {Col, Row} from "reactstrap";
 import Link from "@material-ui/core/Link/Link";
 import back_image from './../../assets/img/webseries.jpg';
+import Card from "@material-ui/core/Card/Card";
+import Button from "@material-ui/core/Button/Button";
+import {KeyboardArrowLeft, KeyboardArrowRight} from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
     cardGrid: {
@@ -58,11 +61,14 @@ export default function WebSeries() {
 
     const [latest, setLatest] = useState();
     const [loading, setLoading] = useState(false);
+    const [responses, setResponses] = useState([]);
 
     //fetch data from server
-    useEffect(() => {
-        setLoading(true);
-        axios.post(configs.server_address + '/getLatest', {filters: {media_type: MediaType.WEBSERIES}}).then(res => {
+    const loadData = (timestamp) => {
+        let filters = {media_type: MediaType.WEBSERIES};
+        if (timestamp) filters.timestamp = timestamp;
+
+        axios.post(configs.server_address + '/getLatest', {filters: filters}).then(res => {
             if (res.data.success) {
                 //change state of all elements
                 setLatest(res.data.data);
@@ -73,8 +79,31 @@ export default function WebSeries() {
         }).catch(err => {
             console.log(err);
             setLoading(false);
+            setLatest(null);
         });
+
+    };
+
+
+    useEffect(() => {
+        setLoading(true);
+        loadData();
     }, []);
+
+    const handleBack = () => {
+        let oldRes = responses;
+        let l = oldRes.pop();
+        setResponses(oldRes);
+        setLatest(l);
+    };
+    const handleNext = () => {
+        setLoading(true);
+        let newRes = responses;
+        newRes.push(latest);
+        //  console.log(newRes);
+        setResponses(newRes);
+        loadData(latest[latest.length - 1].created_at);
+    };
 
     return (
         <React.Fragment>
@@ -103,9 +132,9 @@ export default function WebSeries() {
                     </Grid>
                 </Paper>
 
-                {loading? ( <LinearProgress variant="query" color="secondary" />):(null)}
+                {loading ? (<LinearProgress variant="query" color="secondary"/>) : (null)}
 
-                {latest?(
+                {latest ? (
                     <Container className={classes.cardGrid} maxWidth="md">
                         <Grid container spacing={4}>
                             {latest.map((card) => (
@@ -113,8 +142,27 @@ export default function WebSeries() {
                             ))}
                         </Grid>
 
+                        <div style={{justifyContent: 'center', display: 'flex'}}>
+                            <Card style={{
+                                justifyContent: 'space-between',
+                                display: 'flex',
+                                marginTop: 20,
+                                width: '60%'
+                            }}>
+                                <Button onClick={handleBack} disabled={responses.length < 1}>
+                                    {<KeyboardArrowLeft/>}
+                                    Back
+                                </Button>
+                                <Typography style={{alignSelf: 'center'}}>See more results</Typography>
+                                <Button onClick={handleNext}>
+                                    Next
+                                    {<KeyboardArrowRight/>}
+                                </Button>
+                            </Card>
+                        </div>
+
                     </Container>
-                ):(null)}
+                ) : (null)}
 
                 {(!loading && !latest) ?
                     (<div style={{backgroundColor: "#cfd8dc", paddingTop: 150, paddingBottom: 150}}>
@@ -123,13 +171,15 @@ export default function WebSeries() {
                                     <Col md="6">
                                         <div className="clearfix">
                                             <h4 className="pt-3">Oops! You're lost.</h4>
-                                            <p className="text-muted float-left">No Movie / Web Series were found in this section.</p>
+                                            <p className="text-muted float-left">No Movie / Web Series were found in
+                                                this section.</p>
                                         </div>
                                     </Col>
                                 </Row>
                                 <Row className={'justify-content-center'}>
                                     <Typography variant="h5" color="textPrimary" gutterBottom>
-                                        You can search again or view our <Link href={configs.website_address}> Home Page </Link> for more awesome content.
+                                        You can <Link href={"/search"}>search </Link> or view our <Link
+                                        href={configs.website_address}> Home Page </Link> for more awesome content.
                                     </Typography>
                                 </Row>
                             </Container>
