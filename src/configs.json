@@ -1,9 +1,9 @@
 {
   "website_name": "Filmistaan",
   "website_address": "http://localhost:3000/",
-  "server_address":"http://localhost:5001/movies-9eb90/asia-northeast1/services",
+  "server_address":"https://asia-northeast1-filmistaan-1f6ac.cloudfunctions.net/services",
   "telegram_channel_name":"Filmistaan",
-  "telegram_channel_link":"https://t.me/tanuj_mehta",
+  "telegram_channel_link":"https://t.me/telegram",
   "algolia_appname":"ELRRSHQHGD",
   "algolia_search_key":"680a915d8b1ce3c430b1412f34f89ec3",
   "algolia_index_name":"titles"

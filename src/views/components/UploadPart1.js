@@ -6,7 +6,7 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
-import {MediaType, Industry} from "../../enums";
+import {MediaType, Industry, VideoResolution} from "../../enums";
 import Input from "@material-ui/core/Input";
 import Chip from "@material-ui/core/Chip";
 import DoneIcon from "@material-ui/icons/Done";
@@ -61,7 +61,10 @@ export default function AddressForm(props) {
         'HDRip',
         'HQ',
         'DD 5.1',
-        '10 Bit'
+        '10 Bit',
+        VideoResolution.HDplus,
+        VideoResolution.HD,
+        VideoResolution.UHD
     ];
 
     return (

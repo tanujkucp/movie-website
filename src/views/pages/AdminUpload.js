@@ -113,7 +113,7 @@ export default function AdminUpload() {
         axios.post(configs.server_address + '/saveMedia', {user_secret: user_secret, data: data}).then(res => {
             if (res.data.success) {
                 //change state of all elements
-                setResponse(res.data.data);
+                setResponse(res.data);
             } else {
                 //alert(res.data.message);
                 setError(res.data.message)

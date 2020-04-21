@@ -116,7 +116,7 @@ export default function Home() {
                             <Grid container spacing={2} justify="center">
                                 <Grid item>
                                     <Button variant="contained" color="primary" startIcon={<TelegramIcon/>}>
-                                        See our Telegram Channel
+                                        <a style={{color:'white'}} target="_blank" href={configs.telegram_channel_link} rel="noopener noreferrer">See our Telegram Channel</a>
                                     </Button>
                                 </Grid>
 

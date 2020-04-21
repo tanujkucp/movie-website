@@ -181,7 +181,7 @@ export default function MediaDetails(props) {
             {loading ? (<LinearProgress variant="query" color="secondary"/>) : (null)}
 
             {details ? (
-                <main style={{padding: 20, backgroundColor: '#cfd8dc',}}>
+                <main style={{padding: 20, backgroundColor: '#cfd8dc'}}>
                     <Card className={cx(styles.root, shadowStyles.root)}>
                         <CardMedia
                             className={styles.media}
@@ -208,7 +208,7 @@ export default function MediaDetails(props) {
                                     {details.tags.map(chip => (
                                         <Grid item key={chip}>
                                             <Chip
-                                                style={{backgroundColor: '#2196f3', color: 'white', fontWeight: 'bold'}}
+                                                style={{backgroundColor: '#1976d2', color: 'white', fontWeight: 'bold'}}
                                                 icon={<DoneIcon style={{color: '#4caf50'}}/>} size="medium"
                                                 label={chip}/>
                                         </Grid>)
@@ -275,7 +275,7 @@ export default function MediaDetails(props) {
                                                     <div className={styles.cardPricing}>
                                                         <Typography component="h4" variant="h4"
                                                                     style={{color: "#2196f3"}}>
-                                                            {download.size}
+                                                            {download.size} GB
                                                         </Typography>
                                                     </div>
                                                     <ul style={{listStyleType: 'none', padding: 0}}>
@@ -362,7 +362,9 @@ export default function MediaDetails(props) {
                         </Row>
                     </Container>
                 </div>
-            ) : (null))}
+            ) : (
+                <div style={{height: 300,backgroundColor: '#cfd8dc' }}/>
+            ))}
 
             <WaveBorder
                 upperColor="#cfd8dc"

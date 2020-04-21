@@ -28,7 +28,7 @@ export default function Footer() {
 
             <Typography variant="subtitle1" align="center" style={{color: 'white'}} component="p">
                 <TelegramIcon/> <a style={{color:'white'}} target="_blank" href={configs.telegram_channel_link} rel="noopener noreferrer">Follow
-                for latest updates</a>
+                for latest updates and news</a>
             </Typography>
 
             <Copyright/>
