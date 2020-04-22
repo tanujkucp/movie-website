@@ -123,11 +123,10 @@ export default function Hollywood() {
                         <Grid item md={6}>
                             <div className={classes.mainFeaturedPostContent}>
                                 <Typography component="h1" variant="h3" color="inherit" gutterBottom>
-                                    Hollywood is Life
+                                    Hollywood is just better
                                 </Typography>
                                 <Typography variant="h5" color="inherit" paragraph>
-                                    We all love hollywood and are in love with movies, so we bring you the latest
-                                    hollywood collection.
+                                    Remember watching your first hollywood movie and life was never the same again. So just lay back and watch your favourite superheroes.
                                 </Typography>
                             </div>
                         </Grid>

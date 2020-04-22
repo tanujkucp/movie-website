@@ -1,6 +1,6 @@
 {
   "website_name": "Filmistaan",
-  "website_address": "http://localhost:3000/",
+  "website_address": "/",
   "server_address":"https://asia-northeast1-filmistaan-1f6ac.cloudfunctions.net/services",
   "telegram_channel_name":"Filmistaan",
   "telegram_channel_link":"https://t.me/telegram",

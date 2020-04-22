@@ -5,7 +5,8 @@ import {Route, BrowserRouter as Router, Switch} from 'react-router-dom'
 import LinearProgress from "@material-ui/core/LinearProgress/LinearProgress";
 
 
-const Home = React.lazy(() => import('./views/pages/Home'));
+import Home from './views/pages/Home';
+
 const SignIn = React.lazy(() => import('./views/pages/SignIn'));
 const Page404 = React.lazy(() => import('./views/pages/Page404'));
 const MediaDetails = React.lazy(() => import('./views/pages/MediaDetails'));
@@ -37,7 +38,7 @@ const routing = (
 
 ReactDOM.render(routing, document.getElementById('root'));
 
-//todo If you want your app to work offline and load faster, you can change
+// If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+serviceWorker.register();

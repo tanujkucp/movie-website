@@ -121,11 +121,10 @@ export default function WebSeries() {
                         <Grid item md={6}>
                             <div className={classes.mainFeaturedPostContent}>
                                 <Typography component="h1" variant="h3" color="inherit" gutterBottom>
-                                    TV/Web Series are love
+                                    TV/Web Series Yay!
                                 </Typography>
                                 <Typography variant="h5" color="inherit" paragraph>
-                                    We all love TV/Web series and are in love with them, so we bring you the latest
-                                    TV/Web series collection.
+                                    Web Series are our new found love and we cannot stop watching them. Just sit and binge watch all the best series.
                                 </Typography>
                             </div>
                         </Grid>

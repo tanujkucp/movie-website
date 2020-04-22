@@ -23,7 +23,7 @@ export default function Footer() {
         <footer style={{backgroundColor: 'rgb(36, 40, 44)', padding: 10}}>
 
             <Typography variant="h5" align="center" style={{color: 'white'}} component="p">
-                Something here to give the footer a purpose!
+                We bring you the best of movies in Best Quality!
             </Typography>
 
             <Typography variant="subtitle1" align="center" style={{color: 'white'}} component="p">
