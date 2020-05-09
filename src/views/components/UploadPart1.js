@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Grid from '@material-ui/core/Grid';
 import {makeStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -28,9 +28,13 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function AddressForm(props) {
+   // console.log(props);
     const classes = useStyles();
     const [data, setData] = useState(props.data);
 
+    useEffect(() => {
+        setData(props.data);
+    });
     const handleChange = (event) => {
         let newData = {
             ...data,
@@ -64,7 +68,15 @@ export default function AddressForm(props) {
         '10 Bit',
         VideoResolution.HDplus,
         VideoResolution.HD,
-        VideoResolution.UHD
+        VideoResolution.UHD,
+        'Amazon Prime',
+        'Netflix',
+        'Zee5',
+        'Voot',
+        'Hotstar',
+        'ErosNow',
+        'ALTBalaji',
+        'HOOQ'
     ];
 
     return (

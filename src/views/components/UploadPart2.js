@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
@@ -7,6 +7,9 @@ import TextField from '@material-ui/core/TextField';
 export default function UploadPart2(props) {
     const linkFields = [0, 1, 2, 3];
     const [data, setData] = useState(props.data);
+    useEffect(() => {
+        setData(props.data);
+    });
     let links = data.screenshots;
 
     const handleChange = (event) => {

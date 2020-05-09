@@ -72,7 +72,7 @@ export default function SignIn() {
 
     const login = () => {
         setLoading(true);
-        axios.post(configs.server_address + "/login", credentials)
+        axios.post(configs.server_address + "/services/login", credentials)
             .then((res) => {
                 if (res.data.success) {
                     //show secret key to user
@@ -89,7 +89,7 @@ export default function SignIn() {
 
     const verifyJWT = () => {
         setLoading(true);
-        axios.post(configs.server_address + "/verifyJWT", {user_secret: user_secret})
+        axios.post(configs.server_address + "/services/verifyJWT", {user_secret: user_secret})
             .then((res) => {
                 if (res.data.success) {
                     //show secret key to user

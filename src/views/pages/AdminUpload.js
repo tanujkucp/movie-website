@@ -20,6 +20,8 @@ import configs from "../../configs";
 import {Industry, MediaType} from "../../enums";
 import LinearProgress from "@material-ui/core/LinearProgress/LinearProgress";
 import TextField from "@material-ui/core/TextField/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Switch from "@material-ui/core/Switch";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -68,6 +70,8 @@ export default function AdminUpload() {
     const [activeStep, setActiveStep] = useState(0);
     const [response, setResponse] = useState();
     const [user_secret, setSecret] = useState('');
+    const [media_id, setMediaID] = useState('');
+    const [isUpdate, setIsUpdate] = useState(false);
     const [data, setData] = useState({
         industry: Industry.BOLLYWOOD,
         media_type: MediaType.MOVIE,
@@ -99,9 +103,8 @@ export default function AdminUpload() {
                 //upload();
                 setActiveStep(activeStep + 1);
             } else setError('Fill all details first!');
-           // setActiveStep(activeStep + 1);
-        }
-        else setActiveStep(activeStep + 1);
+            // setActiveStep(activeStep + 1);
+        } else setActiveStep(activeStep + 1);
     };
     const handleBack = () => {
         setActiveStep(activeStep - 1);
@@ -110,7 +113,7 @@ export default function AdminUpload() {
     const upload = () => {
         setLoading(true);
         console.log(data);
-        axios.post(configs.server_address + '/saveMedia', {user_secret: user_secret, data: data}).then(res => {
+        axios.post(configs.server_address + '/services/saveMedia', {user_secret: user_secret, data: data}).then(res => {
             if (res.data.success) {
                 //change state of all elements
                 setResponse(res.data);
@@ -122,9 +125,67 @@ export default function AdminUpload() {
         }).catch(err => {
             console.log(err);
             setLoading(false);
-            if(err.response) setError(err.response.data.message);
+            if (err.response) setError(err.response.data.message);
         });
     };
+
+    const update = () => {
+        setLoading(true);
+        console.log(data);
+        axios.post(configs.server_address + '/services/updateMedia', {
+            user_secret: user_secret,
+            data: data,
+            media_id: media_id
+        }).then(res => {
+            if (res.data.success) {
+                //change state of all elements
+                setResponse(res.data);
+            } else {
+                //alert(res.data.message);
+                setError(res.data.message)
+            }
+            setLoading(false);
+        }).catch(err => {
+            console.log(err);
+            setLoading(false);
+            if (err.response) setError(err.response.data.message);
+        });
+    };
+
+    //fetch data from server with given media_id
+    const loadData = () => {
+        setLoading(true);
+        axios.post(configs.server_address + '/getMedia', {media_id: media_id}).then(res => {
+            if (res.data.success) {
+                //change state of all elements
+                setData(res.data.data);
+                console.log(res.data.data);
+            } else {
+                setError(res.data.message);
+            }
+            setLoading(false);
+        }).catch(err => {
+            console.log(err);
+            setLoading(false);
+            if (err.response) setError(err.response.data.message);
+        });
+    };
+
+    const downloadFile = () => {
+        let text = {
+            title: data.title,
+            tags: data.tags,
+            poster_link: data.poster_link,
+            media_id: response.media_id,
+            objectID: response.media_id
+        };
+        let element = document.createElement("a");
+        let file = new Blob([JSON.stringify(text, null, 2)], {type: 'application/json'});
+        element.href = URL.createObjectURL(file);
+        element.download = text.media_id + ".json";
+        document.body.appendChild(element); // Required for this to work in FireFox
+        element.click();
+    }
 
     const getStepContent = (step) => {
         switch (step) {
@@ -141,7 +202,7 @@ export default function AdminUpload() {
 
     const getData = (d) => {
         setData(d);
-      //  console.log(d);
+        //  console.log(d);
     };
 
     return (
@@ -155,6 +216,35 @@ export default function AdminUpload() {
                 </Snackbar>
 
                 <CssBaseline/>
+
+                {loading ? (
+                    <LinearProgress variant="query" color="secondary"/>
+                ) : (null)}
+                <Paper style={{padding: 20, marginBottom: 10}}>
+                    <FormControlLabel
+                        control={<Switch checked={isUpdate} onChange={() => setIsUpdate(prev => !prev)}/>}
+                        label="Update Mode"
+                    />
+                    {isUpdate ? (<div>
+                        <TextField
+                            margin="normal"
+                            fullWidth
+                            label="Enter Media ID"
+                            value={media_id}
+                            onChange={(e) => setMediaID(e.target.value)}
+                        />
+                        <Button
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            onClick={loadData}
+                        >
+                            Load Data
+                        </Button>
+                    </div>) : (null)}
+
+
+                </Paper>
 
                 <Paper className={classes.paper}>
                     <Typography component="h1" variant="h4" align="center">
@@ -178,30 +268,36 @@ export default function AdminUpload() {
                                             Thank you for your upload.
                                         </Typography>
                                         <Typography variant="subtitle1">
-                                            Your upload ID is {response.media_id} . You can check the details page <a target="_blank" rel="noopener noreferrer"
-                                            href={configs.website_address+'m/'+ response.media_id}>here </a>.
+                                            Your upload ID is {response.media_id} . You can check the details page <a
+                                            target="_blank" rel="noopener noreferrer"
+                                            href={configs.website_address + 'm/' + response.media_id}>here </a>.
                                         </Typography>
+                                        <Button
+                                            variant="contained"
+                                            color="primary"
+                                            onClick={downloadFile}
+                                        >Download Index</Button>
                                     </React.Fragment>
                                 ) : (
                                     <div>
-                                    <TextField
-                                        variant="outlined"
-                                        margin="normal"
-                                        fullWidth
-                                        multiline
-                                        rowsMax={6}
-                                        label="Enter Your Secret Key"
-                                        value={user_secret}
-                                        onChange={(e) => setSecret(e.target.value)}
-                                        style={{backgroundColor: '#eee'}}
-                                    />
+                                        <TextField
+                                            variant="outlined"
+                                            margin="normal"
+                                            fullWidth
+                                            multiline
+                                            rowsMax={6}
+                                            label="Enter Your Secret Key"
+                                            value={user_secret}
+                                            onChange={(e) => setSecret(e.target.value)}
+                                            style={{backgroundColor: '#eee'}}
+                                        />
                                         <Button
                                             fullWidth
                                             variant="contained"
                                             color="primary"
-                                            onClick={upload}
+                                            onClick={isUpdate? update : upload}
                                         >
-                                            Verify and Upload
+                                            Verify and {isUpdate? 'Update': 'Upload'}
                                         </Button>
                                     </div>
                                 )

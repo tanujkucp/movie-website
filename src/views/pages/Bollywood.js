@@ -16,8 +16,8 @@ import LinearProgress from "@material-ui/core/LinearProgress/LinearProgress";
 import {Col, Row} from "reactstrap";
 import Link from "@material-ui/core/Link/Link";
 import back_image from './../../assets/img/bollywood.jpg';
-import Card from "@material-ui/core/Card/Card";
-import Button from "@material-ui/core/Button/Button";
+import Card from "@material-ui/core/Card";
+import Button from "@material-ui/core/Button";
 import {KeyboardArrowLeft, KeyboardArrowRight} from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({

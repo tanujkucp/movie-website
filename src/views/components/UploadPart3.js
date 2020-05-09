@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Typography from '@material-ui/core/Typography';
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid/Grid";
@@ -14,6 +14,9 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 export default function UploadPart3(props) {
     const [link, setLink] = useState({label: '', link: ''});
     const [data, setData] = useState(props.data);
+    useEffect(() => {
+        setData(props.data);
+    });
 
     if (data.downloads.length === 0) data.downloads.push({quality: '', size: '', details: ['', ''], links: []});
 
