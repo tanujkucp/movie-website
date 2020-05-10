@@ -13,7 +13,7 @@ function Copyright() {
                 {configs.website_name}
             </Link>{' '}
             {new Date().getFullYear()}
-            {'.'}
+
         </Typography>
     );
 }

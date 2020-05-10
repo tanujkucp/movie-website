@@ -113,7 +113,8 @@ export default function AdminUpload() {
     const upload = () => {
         setLoading(true);
         console.log(data);
-        axios.post(configs.server_address + '/services/saveMedia', {user_secret: user_secret, data: data}).then(res => {
+        axios.post(configs.server_address + '/services/saveMedia',
+            {user_secret: user_secret.trim(), data: data}).then(res => {
             if (res.data.success) {
                 //change state of all elements
                 setResponse(res.data);
@@ -133,9 +134,9 @@ export default function AdminUpload() {
         setLoading(true);
         console.log(data);
         axios.post(configs.server_address + '/services/updateMedia', {
-            user_secret: user_secret,
+            user_secret: user_secret.trim(),
             data: data,
-            media_id: media_id
+            media_id: media_id.trim()
         }).then(res => {
             if (res.data.success) {
                 //change state of all elements
@@ -155,7 +156,7 @@ export default function AdminUpload() {
     //fetch data from server with given media_id
     const loadData = () => {
         setLoading(true);
-        axios.post(configs.server_address + '/getMedia', {media_id: media_id}).then(res => {
+        axios.post(configs.server_address + '/getMedia', {media_id: media_id.trim()}).then(res => {
             if (res.data.success) {
                 //change state of all elements
                 setData(res.data.data);
@@ -177,6 +178,7 @@ export default function AdminUpload() {
             tags: data.tags,
             poster_link: data.poster_link,
             media_id: response.media_id,
+            genre: data.genre,
             objectID: response.media_id
         };
         let element = document.createElement("a");

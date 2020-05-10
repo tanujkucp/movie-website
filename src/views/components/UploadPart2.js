@@ -9,7 +9,7 @@ export default function UploadPart2(props) {
     const [data, setData] = useState(props.data);
     useEffect(() => {
         setData(props.data);
-    });
+    },[props.data]);
     let links = data.screenshots;
 
     const handleChange = (event) => {

@@ -16,8 +16,8 @@ import LinearProgress from "@material-ui/core/LinearProgress/LinearProgress";
 import {Col, Row} from "reactstrap";
 import Link from "@material-ui/core/Link/Link";
 import back_image from './../../assets/img/webseries.jpg';
-import Card from "@material-ui/core/Card/Card";
-import Button from "@material-ui/core/Button/Button";
+import Card from "@material-ui/core/Card";
+import Button from "@material-ui/core/Button";
 import {KeyboardArrowLeft, KeyboardArrowRight} from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
@@ -124,7 +124,8 @@ export default function WebSeries() {
                                     TV/Web Series Yay!
                                 </Typography>
                                 <Typography variant="h5" color="inherit" paragraph>
-                                    Web Series are our new found love and we cannot stop watching them. Just sit and binge watch all the best series.
+                                    Web Series are our new found love and we cannot stop watching them. Just sit and
+                                    binge watch all the best series.
                                 </Typography>
                             </div>
                         </Grid>
@@ -140,26 +141,26 @@ export default function WebSeries() {
                                 <MediaCard card={card}/>
                             ))}
                         </Grid>
-
-                        <div style={{justifyContent: 'center', display: 'flex'}}>
-                            <Card style={{
-                                justifyContent: 'space-between',
-                                display: 'flex',
-                                marginTop: 20,
-                                width: '60%'
-                            }}>
-                                <Button onClick={handleBack} disabled={responses.length < 1}>
-                                    {<KeyboardArrowLeft/>}
-                                    Back
-                                </Button>
-                                <Typography style={{alignSelf: 'center'}}>See more results</Typography>
-                                <Button onClick={handleNext}>
-                                    Next
-                                    {<KeyboardArrowRight/>}
-                                </Button>
-                            </Card>
-                        </div>
-
+                        {(latest.length < 9) ? null : (
+                            <div style={{justifyContent: 'center', display: 'flex'}}>
+                                <Card style={{
+                                    justifyContent: 'space-between',
+                                    display: 'flex',
+                                    marginTop: 20,
+                                    width: '60%'
+                                }}>
+                                    <Button onClick={handleBack} disabled={responses.length < 1}>
+                                        {<KeyboardArrowLeft/>}
+                                        Back
+                                    </Button>
+                                    <Typography style={{alignSelf: 'center'}}>See more results</Typography>
+                                    <Button onClick={handleNext}>
+                                        Next
+                                        {<KeyboardArrowRight/>}
+                                    </Button>
+                                </Card>
+                            </div>
+                        )}
                     </Container>
                 ) : (null)}
 

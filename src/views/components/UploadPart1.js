@@ -34,7 +34,7 @@ export default function AddressForm(props) {
 
     useEffect(() => {
         setData(props.data);
-    });
+    },[props.data]);
     const handleChange = (event) => {
         let newData = {
             ...data,

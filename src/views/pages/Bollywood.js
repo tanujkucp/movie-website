@@ -141,24 +141,26 @@ export default function Bollywood() {
                                 <MediaCard card={card}/>
                             ))}
                         </Grid>
-                        <div style={{justifyContent: 'center', display: 'flex'}}>
-                            <Card style={{
-                                justifyContent: 'space-between',
-                                display: 'flex',
-                                marginTop: 20,
-                                width: '60%'
-                            }}>
-                                <Button onClick={handleBack} disabled={responses.length < 1}>
-                                    {<KeyboardArrowLeft/>}
-                                    Back
-                                </Button>
-                                <Typography style={{alignSelf: 'center'}}>See more results</Typography>
-                                <Button onClick={handleNext}>
-                                    Next
-                                    {<KeyboardArrowRight/>}
-                                </Button>
-                            </Card>
-                        </div>
+                        {(latest.length < 9) ? null : (
+                            <div style={{justifyContent: 'center', display: 'flex'}}>
+                                <Card style={{
+                                    justifyContent: 'space-between',
+                                    display: 'flex',
+                                    marginTop: 20,
+                                    width: '60%'
+                                }}>
+                                    <Button onClick={handleBack} disabled={responses.length < 1}>
+                                        {<KeyboardArrowLeft/>}
+                                        Back
+                                    </Button>
+                                    <Typography style={{alignSelf: 'center'}}>See more results</Typography>
+                                    <Button onClick={handleNext}>
+                                        Next
+                                        {<KeyboardArrowRight/>}
+                                    </Button>
+                                </Card>
+                            </div>
+                        )}
 
                     </Container>
                 ) : (null)}

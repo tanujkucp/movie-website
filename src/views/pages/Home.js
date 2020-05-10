@@ -108,13 +108,15 @@ export default function Home() {
                             {configs.website_name}
                         </Typography>
                         <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                           A common destination to find all the movies and series you love. We bring you all in the best quality. Be it Bollywood or Hollywood, we got you covered.
+                            A common destination to find all the movies and series you love. We bring you all in the
+                            best quality. Be it Bollywood or Hollywood, we got you covered.
                         </Typography>
                         <div className={classes.heroButtons}>
                             <Grid container spacing={2} justify="center">
                                 <Grid item>
                                     <Button variant="contained" color="primary" startIcon={<TelegramIcon/>}>
-                                        <a style={{color:'white'}} target="_blank" href={configs.telegram_channel_link} rel="noopener noreferrer">See our Telegram Channel</a>
+                                        <a style={{color: 'white'}} target="_blank" href={configs.telegram_channel_link}
+                                           rel="noopener noreferrer">See our Telegram Channel</a>
                                     </Button>
                                 </Grid>
 
@@ -132,24 +134,27 @@ export default function Home() {
                                     <MediaCard card={card} key={card.title}/>
                                 ))}
                             </Grid>
-                            <div style={{justifyContent: 'center', display: 'flex'}}>
-                                <Card style={{
-                                    justifyContent: 'space-between',
-                                    display: 'flex',
-                                    marginTop: 20,
-                                    width: '60%'
-                                }}>
-                                    <Button onClick={handleBack} disabled={responses.length < 1}>
-                                        {<KeyboardArrowLeft/>}
-                                        Back
-                                    </Button>
-                                    <Typography style={{alignSelf: 'center'}}>See more results</Typography>
-                                    <Button onClick={handleNext}>
-                                        Next
-                                        {<KeyboardArrowRight/>}
-                                    </Button>
-                                </Card>
-                            </div>
+                            {(latest.length < 9) ? null : (
+                                <div style={{justifyContent: 'center', display: 'flex'}}>
+                                    <Card style={{
+                                        justifyContent: 'space-between',
+                                        display: 'flex',
+                                        marginTop: 20,
+                                        width: '60%'
+                                    }}>
+                                        <Button onClick={handleBack} disabled={responses.length < 1}>
+                                            {<KeyboardArrowLeft/>}
+                                            Back
+                                        </Button>
+                                        <Typography style={{alignSelf: 'center'}}>See more results</Typography>
+                                        <Button onClick={handleNext}>
+                                            Next
+                                            {<KeyboardArrowRight/>}
+                                        </Button>
+                                    </Card>
+                                </div>
+                            )}
+
                         </div>
                     ) : (null)}
 

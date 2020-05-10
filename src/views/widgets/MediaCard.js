@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
     cardMedia: {
         //paddingTop: '56.25%', // 16:9
-        paddingTop: '90%'
+        paddingTop: '100%'
     },
     cardContent: {
         flexGrow: 1,
@@ -39,7 +39,7 @@ export default function MediaCard(props) {
                     title={media.title}
                 />
                 <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
+                    <Typography gutterBottom variant="h5" component="h2" style={{marginTop: -10}}>
                         {media.title}
                     </Typography>
                     <Grid container spacing={1}>
@@ -54,7 +54,9 @@ export default function MediaCard(props) {
                     </Grid>
                 </CardContent>
                 <CardActions>
-                    <Button fullWidth variant="outlined" color="primary" endIcon={<ArrowForwardIosIcon/>}>
+                    <Button fullWidth variant="outlined" color="primary"
+                            endIcon={<ArrowForwardIosIcon/>}
+                    style={{marginTop:-10}}>
                         <Link variant="button" href={'/m/' + media.media_id} >
                             View Links
                         </Link>

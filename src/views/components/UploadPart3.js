@@ -16,7 +16,7 @@ export default function UploadPart3(props) {
     const [data, setData] = useState(props.data);
     useEffect(() => {
         setData(props.data);
-    });
+    },[props.data]);
 
     if (data.downloads.length === 0) data.downloads.push({quality: '', size: '', details: ['', ''], links: []});
 
