@@ -1,4 +1,5 @@
-
+export const server_addr = "https://asia-northeast1-filmistaan-1f6ac.cloudfunctions.net";
+export const local_server = "http://localhost:5001/filmistaan-1f6ac/asia-northeast1";
 export const Industry = {
     BOLLYWOOD: 'Bollywood',
     HOLLYWOOD: 'Hollywood',

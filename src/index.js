@@ -3,18 +3,16 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import {Route, BrowserRouter as Router, Switch} from 'react-router-dom'
 import LinearProgress from "@material-ui/core/LinearProgress/LinearProgress";
-
-
 import Home from './views/pages/Home';
 
-const SignIn = React.lazy(() => import('./views/pages/SignIn'));
+//const SignIn = React.lazy(() => import('./views/pages/SignIn'));
 const Page404 = React.lazy(() => import('./views/pages/Page404'));
 const MediaDetails = React.lazy(() => import('./views/pages/MediaDetails'));
 const Bollywood = React.lazy(() => import('./views/pages/Bollywood'));
 const Hollywood = React.lazy(() => import('./views/pages/Hollywood'));
 const WebSeries = React.lazy(() => import('./views/pages/WebSeries'));
 const Search = React.lazy(() => import('./views/pages/Search'));
-const AdminUpload = React.lazy(() => import('./views/pages/AdminUpload'));
+//const AdminUpload = React.lazy(() => import('./views/pages/AdminUpload'));
 
 const loading = () => <LinearProgress variant="query" style={{width: '100%'}} color="secondary"/>;
 
@@ -23,12 +21,12 @@ const routing = (
         <React.Suspense fallback={loading()}>
             <Switch>
                 <Route exact path="/" component={Home}/>
-                <Route path="/adminLogin" component={SignIn}/>
-                <Route path="/bollywood" component={Bollywood}/>
-                <Route path="/hollywood" component={Hollywood}/>
-                <Route path="/webseries" component={WebSeries}/>
-                <Route path="/search" component={Search}/>
-                <Route path="/adminUpload" component={AdminUpload}/>
+
+                <Route exact path="/bollywood" component={Bollywood}/>
+                <Route exact path="/hollywood" component={Hollywood}/>
+                <Route exact path="/webseries" component={WebSeries}/>
+                <Route exact path="/search" component={Search}/>
+
                 <Route path="/m/:id" component={MediaDetails}/>
                 <Route component={Page404}/>
             </Switch>

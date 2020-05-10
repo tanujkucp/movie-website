@@ -19,24 +19,22 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="351e130f-e8bd-4a89-af19-8ff8381bdc2c" name="Default Changelist" comment="Added options to Download index file for search and also Edit option for updating previously uploaded titles">
+    <list default="true" id="351e130f-e8bd-4a89-af19-8ff8381bdc2c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/configs.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/configs.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/UploadPart1.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/UploadPart1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/UploadPart2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/UploadPart2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/UploadPart3.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/UploadPart3.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/pages/AdminUpload.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/AdminUpload.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/pages/Bollywood.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/Bollywood.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/pages/Hollywood.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/Hollywood.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/pages/WebSeries.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/WebSeries.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/widgets/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/widgets/Footer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/widgets/MediaCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/widgets/MediaCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enums.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/enums.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -51,7 +49,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../website-admin" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
@@ -99,7 +97,7 @@
       <workItem from="1588845114194" duration="37000" />
       <workItem from="1588845384194" duration="91000" />
       <workItem from="1589004414161" duration="17835000" />
-      <workItem from="1589094488074" duration="4311000" />
+      <workItem from="1589094488074" duration="9822000" />
     </task>
     <task id="LOCAL-00001" summary="Added options to Download index file for search and also Edit option for updating previously uploaded titles">
       <created>1589031994653</created>
@@ -108,7 +106,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589031994653</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added option to hide next previous bar when less than 9 titles available,&#10;also fixed some spacing in media cards">
+      <created>1589099237508</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1589099237508</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -128,36 +133,45 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added options to Download index file for search and also Edit option for updating previously uploaded titles" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added options to Download index file for search and also Edit option for updating previously uploaded titles" />
+    <MESSAGE value="Added option to hide next previous bar when less than 9 titles available,&#10;also fixed some spacing in media cards" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added option to hide next previous bar when less than 9 titles available,&#10;also fixed some spacing in media cards" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="251" y="27" width="912" height="741" key="CommitChangelistDialog2" timestamp="1589031951075">
+    <state x="251" y="27" width="912" height="741" key="CommitChangelistDialog2" timestamp="1589099237071">
       <screen x="58" y="27" width="1308" height="741" />
     </state>
-    <state x="251" y="27" width="912" height="741" key="CommitChangelistDialog2/58.27.1308.741@58.27.1308.741" timestamp="1589031951075" />
-    <state width="742" height="581" key="GridCell.Tab.0.bottom" timestamp="1589095051501">
+    <state x="251" y="27" width="912" height="741" key="CommitChangelistDialog2/58.27.1308.741@58.27.1308.741" timestamp="1589099237071" />
+    <state x="495" y="155" width="424" height="491" key="FileChooserDialogImpl" timestamp="1589107748695">
       <screen x="58" y="27" width="1308" height="741" />
     </state>
-    <state width="742" height="581" key="GridCell.Tab.0.bottom/58.27.1308.741@58.27.1308.741" timestamp="1589095051501" />
-    <state width="742" height="581" key="GridCell.Tab.0.center" timestamp="1589095051497">
+    <state x="495" y="155" width="424" height="491" key="FileChooserDialogImpl/58.27.1308.741@58.27.1308.741" timestamp="1589107748695" />
+    <state width="742" height="581" key="GridCell.Tab.0.bottom" timestamp="1589112248041">
       <screen x="58" y="27" width="1308" height="741" />
     </state>
-    <state width="742" height="581" key="GridCell.Tab.0.center/58.27.1308.741@58.27.1308.741" timestamp="1589095051497" />
-    <state width="742" height="581" key="GridCell.Tab.0.left" timestamp="1589095051494">
+    <state width="742" height="581" key="GridCell.Tab.0.bottom/58.27.1308.741@58.27.1308.741" timestamp="1589112248041" />
+    <state width="742" height="581" key="GridCell.Tab.0.center" timestamp="1589112248039">
       <screen x="58" y="27" width="1308" height="741" />
     </state>
-    <state width="742" height="581" key="GridCell.Tab.0.left/58.27.1308.741@58.27.1308.741" timestamp="1589095051494" />
-    <state width="742" height="581" key="GridCell.Tab.0.right" timestamp="1589095051499">
+    <state width="742" height="581" key="GridCell.Tab.0.center/58.27.1308.741@58.27.1308.741" timestamp="1589112248039" />
+    <state width="742" height="581" key="GridCell.Tab.0.left" timestamp="1589112248037">
       <screen x="58" y="27" width="1308" height="741" />
     </state>
-    <state width="742" height="581" key="GridCell.Tab.0.right/58.27.1308.741@58.27.1308.741" timestamp="1589095051499" />
-    <state x="307" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1589032012269">
+    <state width="742" height="581" key="GridCell.Tab.0.left/58.27.1308.741@58.27.1308.741" timestamp="1589112248037" />
+    <state width="742" height="581" key="GridCell.Tab.0.right" timestamp="1589112248040">
       <screen x="58" y="27" width="1308" height="741" />
     </state>
-    <state x="307" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2/58.27.1308.741@58.27.1308.741" timestamp="1589032012269" />
+    <state width="742" height="581" key="GridCell.Tab.0.right/58.27.1308.741@58.27.1308.741" timestamp="1589112248040" />
+    <state x="307" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1589099242811">
+      <screen x="58" y="27" width="1308" height="741" />
+    </state>
+    <state x="307" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2/58.27.1308.741@58.27.1308.741" timestamp="1589099242811" />
     <state x="158" y="127" width="1108" height="541" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1589030836418">
       <screen x="58" y="27" width="1308" height="741" />
     </state>
     <state x="158" y="127" width="1108" height="541" key="com.intellij.history.integration.ui.views.FileHistoryDialog/58.27.1308.741@58.27.1308.741" timestamp="1589030836418" />
+    <state x="322" y="27" width="770" height="741" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1589110844874">
+      <screen x="58" y="27" width="1308" height="741" />
+    </state>
+    <state x="322" y="27" width="770" height="741" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/58.27.1308.741@58.27.1308.741" timestamp="1589110844874" />
   </component>
 </project>
