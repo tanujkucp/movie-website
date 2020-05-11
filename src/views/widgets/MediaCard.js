@@ -9,7 +9,6 @@ import Grid from "@material-ui/core/Grid/Grid";
 import {makeStyles} from "@material-ui/core";
 import Chip from "@material-ui/core/Chip";
 import DoneIcon from '@material-ui/icons/Done';
-import Link from "@material-ui/core/Link/Link";
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
 const useStyles = makeStyles((theme) => ({
@@ -45,8 +44,8 @@ export default function MediaCard(props) {
                     <Grid container spacing={1}>
                         {media.tags.map(chip => (
                             <Grid item key={chip}>
-                                <Chip style={{backgroundColor: '#1976d2', color:'white', fontWeight:'bold'}}
-                                      icon={<DoneIcon style={{color:'#4caf50'}}/>}
+                                <Chip style={{backgroundColor: '#1976d2', color: 'white', fontWeight: 'bold'}}
+                                      icon={<DoneIcon style={{color: '#4caf50'}}/>}
                                       size="medium" label={chip}/>
                             </Grid>)
                         )}
@@ -56,10 +55,9 @@ export default function MediaCard(props) {
                 <CardActions>
                     <Button fullWidth variant="outlined" color="primary"
                             endIcon={<ArrowForwardIosIcon/>}
-                    style={{marginTop:-10}}>
-                        <Link variant="button" href={'/m/' + media.media_id} >
-                            View Links
-                        </Link>
+                            href={'/m/' + media.media_id}
+                            style={{marginTop: -10}}>
+                        View Links
                     </Button>
                 </CardActions>
             </Card>

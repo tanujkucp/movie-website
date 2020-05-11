@@ -114,9 +114,15 @@ export default function Home() {
                         <div className={classes.heroButtons}>
                             <Grid container spacing={2} justify="center">
                                 <Grid item>
-                                    <Button variant="contained" color="primary" startIcon={<TelegramIcon/>}>
-                                        <a style={{color: 'white'}} target="_blank" href={configs.telegram_channel_link}
-                                           rel="noopener noreferrer">See our Telegram Channel</a>
+                                    <Button variant="contained" color="primary" startIcon={<TelegramIcon/>}
+                                            href={configs.telegram_channel_link} target="_blank" rel="noopener noreferrer">
+                                        Follow Telegram Channel
+                                    </Button>
+                                </Grid>
+                                <Grid item>
+                                    <Button variant="contained" color="primary" startIcon={<TelegramIcon/>}
+                                            href={configs.telegram_group_link} target="_blank" rel="noopener noreferrer">
+                                        Join Group For Requests
                                     </Button>
                                 </Grid>
 

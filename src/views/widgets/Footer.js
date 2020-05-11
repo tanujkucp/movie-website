@@ -27,8 +27,10 @@ export default function Footer() {
             </Typography>
 
             <Typography variant="subtitle1" align="center" style={{color: 'white'}} component="p">
-                <TelegramIcon/> <a style={{color:'white'}} target="_blank" href={configs.telegram_channel_link} rel="noopener noreferrer">Follow
-                for latest updates and news</a>
+                <TelegramIcon/> <a style={{color:'white'}} target="_blank" href={configs.telegram_channel_link} rel="noopener noreferrer">
+                Follow Channel For Updates</a>
+                <a style={{color:'white', marginLeft: 20}} target="_blank" href={configs.telegram_group_link} rel="noopener noreferrer">
+                    Join Group For Requests</a>
             </Typography>
 
             <Copyright/>

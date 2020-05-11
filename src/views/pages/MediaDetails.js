@@ -251,7 +251,7 @@ export default function MediaDetails(props) {
                             <Typography variant="h5" align="center"
                                         style={{marginTop: 20, color: 'red', marginBottom: 10}}>
                                 * Report any broken/dead links in our <a target="_blank"
-                                                                         href={configs.telegram_channel_link}
+                                                                         href={configs.telegram_group_link}
                                                                          rel="noopener noreferrer">
                                 Telegram Group</a> *
                             </Typography>
