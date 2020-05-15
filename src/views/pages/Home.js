@@ -115,13 +115,15 @@ export default function Home() {
                             <Grid container spacing={2} justify="center">
                                 <Grid item>
                                     <Button variant="contained" color="primary" startIcon={<TelegramIcon/>}
-                                            href={configs.telegram_channel_link} target="_blank" rel="noopener noreferrer">
+                                            href={configs.telegram_channel_link} target="_blank"
+                                            rel="noopener noreferrer">
                                         Follow Telegram Channel
                                     </Button>
                                 </Grid>
                                 <Grid item>
                                     <Button variant="contained" color="primary" startIcon={<TelegramIcon/>}
-                                            href={configs.telegram_group_link} target="_blank" rel="noopener noreferrer">
+                                            href={configs.telegram_group_link} target="_blank"
+                                            rel="noopener noreferrer">
                                         Join Group For Requests
                                     </Button>
                                 </Grid>
@@ -140,26 +142,26 @@ export default function Home() {
                                     <MediaCard card={card} key={card.title}/>
                                 ))}
                             </Grid>
-                            {(latest.length < 9) ? null : (
-                                <div style={{justifyContent: 'center', display: 'flex'}}>
-                                    <Card style={{
-                                        justifyContent: 'space-between',
-                                        display: 'flex',
-                                        marginTop: 20,
-                                        width: '60%'
-                                    }}>
-                                        <Button onClick={handleBack} disabled={responses.length < 1}>
-                                            {<KeyboardArrowLeft/>}
-                                            Back
-                                        </Button>
-                                        <Typography style={{alignSelf: 'center'}}>See more results</Typography>
-                                        <Button onClick={handleNext}>
-                                            Next
-                                            {<KeyboardArrowRight/>}
-                                        </Button>
-                                    </Card>
-                                </div>
-                            )}
+
+                            <div style={{justifyContent: 'center', display: 'flex'}}>
+                                <Card style={{
+                                    justifyContent: 'space-between',
+                                    display: 'flex',
+                                    marginTop: 20,
+                                    width: '60%'
+                                }}>
+                                    <Button onClick={handleBack} disabled={responses.length < 1}>
+                                        {<KeyboardArrowLeft/>}
+                                        Back
+                                    </Button>
+                                    <Typography style={{alignSelf: 'center'}}>See more results</Typography>
+                                    <Button onClick={handleNext} disabled={latest.length < 9}>
+                                        Next
+                                        {<KeyboardArrowRight/>}
+                                    </Button>
+                                </Card>
+                            </div>
+
 
                         </div>
                     ) : (null)}

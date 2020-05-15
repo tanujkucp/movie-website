@@ -36,6 +36,8 @@ import LinearProgress from "@material-ui/core/LinearProgress/LinearProgress";
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import Alert from "@material-ui/lab/Alert";
+import AlertTitle from "@material-ui/lab/AlertTitle";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -248,13 +250,24 @@ export default function MediaDetails(props) {
                             </Typography>
                             <Carousel images={details.screenshots}/>
 
-                            <Typography variant="h5" align="center"
-                                        style={{marginTop: 20, color: 'red', marginBottom: 10}}>
-                                * Report any broken/dead links in our <a target="_blank"
-                                                                         href={configs.telegram_group_link}
-                                                                         rel="noopener noreferrer">
-                                Telegram Group</a> *
-                            </Typography>
+                            <div style={{width: '100%',paddingLeft: 20, paddingRight: 20, marginBottom: 10}}>
+                                <Alert severity="info" action={
+                                    <Button color="primary" variant={"contained"} size="small" target="_blank" href={configs.telegram_group_link} rel="noopener noreferrer">
+                                        Contact Us
+                                    </Button>
+                                }>
+                                    If you are having any problems downloading or want to contact us, click here.
+                                </Alert>
+                                <Alert severity="warning" action={
+                                    <Button color="secondary" variant={"contained"} size="small" target="_blank" href={configs.telegram_group_link} rel="noopener noreferrer">
+                                        Report
+                                    </Button>
+                                } style={{marginTop:5}}>
+                                    <AlertTitle>Report Issues</AlertTitle>
+                                    Report any broken / dead links in our Telegram Group.</Alert>
+
+                            </div>
+
 
                             <Container maxWidth="md" component="main" ref={(el) => {
                                 linksPosition = el;
@@ -363,7 +376,7 @@ export default function MediaDetails(props) {
                     </Container>
                 </div>
             ) : (
-                <div style={{height: 300,backgroundColor: '#cfd8dc' }}/>
+                <div style={{height: 300, backgroundColor: '#cfd8dc'}}/>
             ))}
 
             <WaveBorder

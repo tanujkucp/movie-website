@@ -68,7 +68,7 @@ export default function Search() {
 
             {loading ? (<LinearProgress variant="query" color="secondary"/>) : (null)}
 
-            <main style={{backgroundColor: "#cfd8dc", height: '100vh'}}>
+            <main style={{backgroundColor: "#cfd8dc"}}>
                 <div style={{display: 'flex', paddingTop: 30, justifyContent: 'center'}}>
                     <TextField
                         label="Enter movie/series name, or tags like 1080p, etc."
@@ -93,7 +93,9 @@ export default function Search() {
                         ))}
                     </Grid>
 
-                </Container>) : (null)}
+                </Container>) : (
+                    <div  style={{paddingTop: 200}}/>
+                )}
 
                 {(awaiting && !loading && !response) ?
                     (<div style={{backgroundColor: "#cfd8dc", paddingTop: 150, paddingBottom: 150}}>
