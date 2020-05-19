@@ -1,7 +1,7 @@
 {
   "website_name": "Filmistaan",
   "website_address": "/",
-  "server_address":"https://asia-northeast1-filmistaan-1f6ac.cloudfunctions.net",
+  "server_address":"http://localhost:5001/filmistaan-1f6ac/asia-northeast1",
   "telegram_channel_name":"Filmistaan",
   "telegram_channel_link":"https://t.me/Suvooh",
   "telegram_group_name": "Suvooh Group",

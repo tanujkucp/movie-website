@@ -5,7 +5,7 @@ import Carousel from 'react-bootstrap/Carousel';
 
 export default class Carousel2 extends React.Component {
     render() {
-        return (<div style={{width:'100%', padding: 20}}>
+        return (<div style={{width:'100%', paddingBottom: 20, paddingTop: 10}}>
                 <Carousel interval={2000}>
                     {this.props.images.map((image) => (
                         <Carousel.Item key={image}>

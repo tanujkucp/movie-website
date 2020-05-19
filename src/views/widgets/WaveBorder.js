@@ -16,7 +16,7 @@ const styles = {
     },
     parallax: {
         "& > use": {
-            animation: "$moveForever 4s cubic-bezier(0.62, 0.5, 0.38, 0.5) infinite",
+            animation: "$moveForever 6s cubic-bezier(0.62, 0.5, 0.38, 0.5) infinite",
             animationDelay: props => `-${props.animationNegativeDelay}s`
         }
     }
