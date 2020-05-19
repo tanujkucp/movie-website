@@ -7,9 +7,11 @@ import Home from './views/pages/Home';
 
 const Page404 = React.lazy(() => import('./views/pages/Page404'));
 const MediaDetails = React.lazy(() => import('./views/pages/MediaDetails'));
+const MediaDetails18 = React.lazy(() => import('./views/pages/MediaDetails18+'));
 const Bollywood = React.lazy(() => import('./views/pages/Bollywood'));
 const Hollywood = React.lazy(() => import('./views/pages/Hollywood'));
 const WebSeries = React.lazy(() => import('./views/pages/WebSeries'));
+const PagePlus18 = React.lazy(() => import('./views/pages/PagePlus18'));
 const Search = React.lazy(() => import('./views/pages/Search'));
 
 const loading = () => <LinearProgress variant="query" style={{width: '100%'}} color="secondary"/>;
@@ -23,8 +25,10 @@ const routing = (
                 <Route exact path="/bollywood" component={Bollywood}/>
                 <Route exact path="/hollywood" component={Hollywood}/>
                 <Route exact path="/webseries" component={WebSeries}/>
+                <Route exact path="/adult" component={PagePlus18}/>
                 <Route exact path="/search" component={Search}/>
                 <Route path="/m/:id" component={MediaDetails}/>
+                <Route path="/p/:id" component={MediaDetails18}/>
                 <Route component={Page404}/>
             </Switch>
         </React.Suspense>

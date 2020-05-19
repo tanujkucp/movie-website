@@ -3,6 +3,7 @@ export const local_server = "http://localhost:5001/filmistaan-1f6ac/asia-northea
 export const Industry = {
     BOLLYWOOD: 'Bollywood',
     HOLLYWOOD: 'Hollywood',
+    PLUS18: '18+',
     OTHER: 'Other'
 };
 

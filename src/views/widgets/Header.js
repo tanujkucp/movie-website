@@ -44,6 +44,9 @@ export default function Header() {
                         <Link variant="button" color="textPrimary" href="/webseries" className={classes.link}>
                             Web Series
                         </Link>
+                        <Link variant="button" color="textPrimary" href="/adult" className={classes.link}>
+                            Adult 18+
+                        </Link>
                         <Link variant="button" color="textPrimary" href="/search" className={classes.link}>
                             <Button variant="contained"
                                     color="default"

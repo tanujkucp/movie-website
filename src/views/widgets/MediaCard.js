@@ -10,6 +10,7 @@ import {makeStyles} from "@material-ui/core";
 import Chip from "@material-ui/core/Chip";
 import DoneIcon from '@material-ui/icons/Done';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import {Industry} from "../../enums";
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -29,6 +30,8 @@ const useStyles = makeStyles((theme) => ({
 export default function MediaCard(props) {
     const classes = useStyles();
     let media = props.card;
+    let urlPrefix= '/m/';
+    if (props.industry && props.industry === Industry.PLUS18) urlPrefix = '/p/';
     return (
         <Grid item key={media.title} xs={12} sm={6} md={4}>
             <Card className={classes.card} elevation={5}>
@@ -55,7 +58,7 @@ export default function MediaCard(props) {
                 <CardActions>
                     <Button fullWidth variant="outlined" color="primary"
                             endIcon={<ArrowForwardIosIcon/>}
-                            href={'/m/' + media.media_id}
+                            href={urlPrefix + media.media_id}
                             style={{marginTop: -10}}>
                         View Links
                     </Button>

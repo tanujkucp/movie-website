@@ -71,7 +71,7 @@ export default function Search() {
             <main style={{backgroundColor: "#cfd8dc"}}>
                 <div style={{display: 'flex', paddingTop: 30, justifyContent: 'center'}}>
                     <TextField
-                        label="Enter movie/series name, or tags like 1080p, etc."
+                        label="Enter movie/series name, genre, or tags like 1080p, etc."
                         variant="outlined"
                         value={text}
                         onChange={(e) => setText(e.target.value)}
