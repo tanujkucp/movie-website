@@ -20,16 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="351e130f-e8bd-4a89-af19-8ff8381bdc2c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/img/adult.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/pages/MediaDetails18+.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/pages/PagePlus18.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/preview.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/configs.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/configs.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enums.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/enums.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/pages/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/Search.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/widgets/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/widgets/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/widgets/MediaCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/widgets/MediaCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +49,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
@@ -64,6 +57,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/src/assets/img" />
     </key>
   </component>
@@ -129,7 +123,7 @@
       <workItem from="1589537228729" duration="3348000" />
       <workItem from="1589540828568" duration="102000" />
       <workItem from="1589541831457" duration="815000" />
-      <workItem from="1589876173685" duration="7610000" />
+      <workItem from="1589876173685" duration="9815000" />
     </task>
     <task id="LOCAL-00001" summary="Added options to Download index file for search and also Edit option for updating previously uploaded titles">
       <created>1589031994653</created>
@@ -173,7 +167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589877087612</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="- Added Adult tab on Header.js&#10;- Added page for Adult videos&#10;- Added different Details page for Adult videos">
+      <created>1589886105598</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1589886105598</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,33 +199,34 @@
     <MESSAGE value="Removed Admin pages, AdminUpload.js, UploadPart1.js, UploadPart2.js, UploadPart3.js, SignIn.js&#10;&#10;Added Telegram Group links," />
     <MESSAGE value="- added alerts to report and get help from telegram group&#10;- fixed search page ui&#10;- fixed next button disabling for pagination" />
     <MESSAGE value="- fixed width of screenshots Carousel.js&#10;- fixed footer WaveBorder.js speed to 6s" />
-    <option name="LAST_COMMIT_MESSAGE" value="- fixed width of screenshots Carousel.js&#10;- fixed footer WaveBorder.js speed to 6s" />
+    <MESSAGE value="- Added Adult tab on Header.js&#10;- Added page for Adult videos&#10;- Added different Details page for Adult videos" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added Adult tab on Header.js&#10;- Added page for Adult videos&#10;- Added different Details page for Adult videos" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="251" y="27" width="912" height="741" key="CommitChangelistDialog2" timestamp="1589877087155">
+    <state x="251" y="27" width="912" height="741" key="CommitChangelistDialog2" timestamp="1589886105397">
       <screen x="58" y="27" width="1308" height="741" />
     </state>
-    <state x="251" y="27" width="912" height="741" key="CommitChangelistDialog2/58.27.1308.741@58.27.1308.741" timestamp="1589877087155" />
+    <state x="251" y="27" width="912" height="741" key="CommitChangelistDialog2/58.27.1308.741@58.27.1308.741" timestamp="1589886105397" />
     <state x="495" y="155" width="424" height="491" key="FileChooserDialogImpl" timestamp="1589107748695">
       <screen x="58" y="27" width="1308" height="741" />
     </state>
     <state x="495" y="155" width="424" height="491" key="FileChooserDialogImpl/58.27.1308.741@58.27.1308.741" timestamp="1589107748695" />
-    <state width="742" height="581" key="GridCell.Tab.0.bottom" timestamp="1589882631167">
+    <state width="742" height="581" key="GridCell.Tab.0.bottom" timestamp="1589888196131">
       <screen x="58" y="27" width="1308" height="741" />
     </state>
-    <state width="742" height="581" key="GridCell.Tab.0.bottom/58.27.1308.741@58.27.1308.741" timestamp="1589882631167" />
-    <state width="742" height="581" key="GridCell.Tab.0.center" timestamp="1589882631159">
+    <state width="742" height="581" key="GridCell.Tab.0.bottom/58.27.1308.741@58.27.1308.741" timestamp="1589888196131" />
+    <state width="742" height="581" key="GridCell.Tab.0.center" timestamp="1589888196131">
       <screen x="58" y="27" width="1308" height="741" />
     </state>
-    <state width="742" height="581" key="GridCell.Tab.0.center/58.27.1308.741@58.27.1308.741" timestamp="1589882631159" />
-    <state width="742" height="581" key="GridCell.Tab.0.left" timestamp="1589882631158">
+    <state width="742" height="581" key="GridCell.Tab.0.center/58.27.1308.741@58.27.1308.741" timestamp="1589888196131" />
+    <state width="742" height="581" key="GridCell.Tab.0.left" timestamp="1589888196128">
       <screen x="58" y="27" width="1308" height="741" />
     </state>
-    <state width="742" height="581" key="GridCell.Tab.0.left/58.27.1308.741@58.27.1308.741" timestamp="1589882631158" />
-    <state width="742" height="581" key="GridCell.Tab.0.right" timestamp="1589882631160">
+    <state width="742" height="581" key="GridCell.Tab.0.left/58.27.1308.741@58.27.1308.741" timestamp="1589888196128" />
+    <state width="742" height="581" key="GridCell.Tab.0.right" timestamp="1589888196131">
       <screen x="58" y="27" width="1308" height="741" />
     </state>
-    <state width="742" height="581" key="GridCell.Tab.0.right/58.27.1308.741@58.27.1308.741" timestamp="1589882631160" />
+    <state width="742" height="581" key="GridCell.Tab.0.right/58.27.1308.741@58.27.1308.741" timestamp="1589888196131" />
     <state x="307" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1589540917075">
       <screen x="58" y="27" width="1308" height="741" />
     </state>
