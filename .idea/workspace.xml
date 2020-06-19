@@ -20,12 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="351e130f-e8bd-4a89-af19-8ff8381bdc2c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enums.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/enums.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/pages/Bollywood.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/Bollywood.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/pages/Hollywood.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/Hollywood.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/Home.js" afterDir="false" />
@@ -35,7 +30,6 @@
       <change beforePath="$PROJECT_DIR$/src/views/pages/PagePlus18.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/PagePlus18.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/pages/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/Search.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/pages/WebSeries.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/WebSeries.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/widgets/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/widgets/Header.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +141,8 @@
       <workItem from="1592373290951" duration="239000" />
       <workItem from="1592540830333" duration="1575000" />
       <workItem from="1592556681559" duration="3008000" />
-      <workItem from="1592560830981" duration="4839000" />
+      <workItem from="1592560830981" duration="5200000" />
+      <workItem from="1592574088329" duration="1374000" />
     </task>
     <task id="LOCAL-00001" summary="Added options to Download index file for search and also Edit option for updating previously uploaded titles">
       <created>1589031994653</created>
@@ -205,7 +200,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589888544297</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="- Added Ad banners to all pages and made Ad loading dynamic.">
+      <created>1592565961236</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1592565961236</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,37 +244,38 @@
     <MESSAGE value="- fixed width of screenshots Carousel.js&#10;- fixed footer WaveBorder.js speed to 6s" />
     <MESSAGE value="- Added Adult tab on Header.js&#10;- Added page for Adult videos&#10;- Added different Details page for Adult videos" />
     <MESSAGE value="- Added meta tags in index.html for website previews on apps etc." />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added meta tags in index.html for website previews on apps etc." />
+    <MESSAGE value="- Added Ad banners to all pages and made Ad loading dynamic." />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added Ad banners to all pages and made Ad loading dynamic." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="251" y="27" width="912" height="741" key="CommitChangelistDialog2" timestamp="1589888544196">
+    <state x="251" y="27" width="912" height="741" key="CommitChangelistDialog2" timestamp="1592565961008">
       <screen x="58" y="27" width="1308" height="741" />
     </state>
-    <state x="251" y="27" width="912" height="741" key="CommitChangelistDialog2/58.27.1308.741@58.27.1308.741" timestamp="1589888544196" />
+    <state x="251" y="27" width="912" height="741" key="CommitChangelistDialog2/58.27.1308.741@58.27.1308.741" timestamp="1592565961008" />
     <state x="495" y="155" width="424" height="491" key="FileChooserDialogImpl" timestamp="1589107748695">
       <screen x="58" y="27" width="1308" height="741" />
     </state>
     <state x="495" y="155" width="424" height="491" key="FileChooserDialogImpl/58.27.1308.741@58.27.1308.741" timestamp="1589107748695" />
-    <state width="742" height="581" key="GridCell.Tab.0.bottom" timestamp="1592565600906">
+    <state width="742" height="581" key="GridCell.Tab.0.bottom" timestamp="1592574850833">
       <screen x="58" y="27" width="1308" height="741" />
     </state>
-    <state width="742" height="581" key="GridCell.Tab.0.bottom/58.27.1308.741@58.27.1308.741" timestamp="1592565600906" />
-    <state width="742" height="581" key="GridCell.Tab.0.center" timestamp="1592565600905">
+    <state width="742" height="581" key="GridCell.Tab.0.bottom/58.27.1308.741@58.27.1308.741" timestamp="1592574850833" />
+    <state width="742" height="581" key="GridCell.Tab.0.center" timestamp="1592574850830">
       <screen x="58" y="27" width="1308" height="741" />
     </state>
-    <state width="742" height="581" key="GridCell.Tab.0.center/58.27.1308.741@58.27.1308.741" timestamp="1592565600905" />
-    <state width="742" height="581" key="GridCell.Tab.0.left" timestamp="1592565600904">
+    <state width="742" height="581" key="GridCell.Tab.0.center/58.27.1308.741@58.27.1308.741" timestamp="1592574850830" />
+    <state width="742" height="581" key="GridCell.Tab.0.left" timestamp="1592574850829">
       <screen x="58" y="27" width="1308" height="741" />
     </state>
-    <state width="742" height="581" key="GridCell.Tab.0.left/58.27.1308.741@58.27.1308.741" timestamp="1592565600904" />
-    <state width="742" height="581" key="GridCell.Tab.0.right" timestamp="1592565600906">
+    <state width="742" height="581" key="GridCell.Tab.0.left/58.27.1308.741@58.27.1308.741" timestamp="1592574850829" />
+    <state width="742" height="581" key="GridCell.Tab.0.right" timestamp="1592574850832">
       <screen x="58" y="27" width="1308" height="741" />
     </state>
-    <state width="742" height="581" key="GridCell.Tab.0.right/58.27.1308.741@58.27.1308.741" timestamp="1592565600906" />
-    <state x="307" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1589889790750">
+    <state width="742" height="581" key="GridCell.Tab.0.right/58.27.1308.741@58.27.1308.741" timestamp="1592574850832" />
+    <state x="307" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1592565967162">
       <screen x="58" y="27" width="1308" height="741" />
     </state>
-    <state x="307" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2/58.27.1308.741@58.27.1308.741" timestamp="1589889790750" />
+    <state x="307" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2/58.27.1308.741@58.27.1308.741" timestamp="1592565967162" />
     <state x="158" y="127" width="1108" height="541" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1592565374685">
       <screen x="58" y="27" width="1308" height="741" />
     </state>

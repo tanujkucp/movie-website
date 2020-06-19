@@ -241,20 +241,24 @@ export default function MediaDetails(props) {
                         </CardContent>
                     </Card>
 
-                    {ad ? (
-                        <div style={{width: '100%', display: 'flex', justifyContent: 'center', marginTop: 10, marginBottom: 10}}>
-                            <Card elevation={5} style={{
-                                display: 'flex',
-                                width: '60%',
-                                aspectRatio: 1,
-                            }}>
-                                <Link href={ad.link} rel="noopener noreferrer" target="_blank">
-                                    <img height={undefined} width={'100%'}
-                                         src={ad.image}/>
-                                </Link>
-                            </Card>
-                        </div>
-                    ) : null}
+                    <Grid container spacing={4} style={{width: '100%', display: 'flex', justifyContent: 'center',marginBottom:10}}>
+                        {ad ? (
+                            <Grid item xs={12} sm={8} md={6}>
+                                <div >
+                                    <Card elevation={5} style={{
+                                        display: 'flex',
+                                        width: '100%',
+                                        aspectRatio: 1,
+                                    }}>
+                                        <Link href={ad.link} rel="noopener noreferrer" target="_blank">
+                                            <img height={undefined} width={'100%'} alt="Sponsored Banner"
+                                                 src={ad.image}/>
+                                        </Link>
+                                    </Card>
+                                </div>
+                            </Grid>
+                        ) : null}
+                    </Grid>
 
                     <Card className={cx(styles.root, shadowStyles.root)}>
                         <div style={{padding: 20, flexDirection: 'column'}}>
@@ -274,7 +278,7 @@ export default function MediaDetails(props) {
                             </Typography>
                             <Carousel images={details.screenshots}/>
 
-                            <div style={{width: '100%',paddingLeft: 20, paddingRight: 20, marginBottom: 10}}>
+                            <div style={{width: '100%',paddingLeft: 0, paddingRight: 0, marginBottom: 10}}>
                                 <Alert severity="info" action={
                                     <Button color="primary" variant={"contained"} size="small" target="_blank" href={configs.telegram_group_link} rel="noopener noreferrer">
                                         Contact Us

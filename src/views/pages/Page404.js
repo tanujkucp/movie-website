@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, {Component} from 'react';
 import {Col, Container, Row} from 'reactstrap';
 import Header from "../widgets/Header";
 import CssBaseline from "@material-ui/core/CssBaseline/CssBaseline";
@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography/Typography";
 import Link from "@material-ui/core/Link";
 import axios from "axios";
 import Card from "@material-ui/core/Card/Card";
+import Grid from "@material-ui/core/Grid";
 
 class Page404 extends Component {
     state = {
@@ -39,20 +40,24 @@ class Page404 extends Component {
                     display: 'flex'
                 }}>
                     <Container>
-                        {this.state.ad ? (
-                            <div style={{width: '100%', display: 'flex', justifyContent: 'center', marginTop: 10}}>
-                                <Card elevation={5} style={{
-                                    display: 'flex',
-                                    width: '60%',
-                                    aspectRatio: 1,
-                                }}>
-                                    <Link href={this.state.ad.link} rel="noopener noreferrer" target="_blank">
-                                        <img height={undefined} width={'100%'}
-                                             src={this.state.ad.image}/>
-                                    </Link>
-                                </Card>
-                            </div>
-                        ) : null}
+                        <Grid container spacing={4} style={{width: '100%', display: 'flex', justifyContent: 'center', marginTop: 10}}>
+                            {this.state.ad ? (
+                                <Grid item xs={12} sm={8} md={8}>
+                                    <div >
+                                        <Card elevation={5} style={{
+                                            display: 'flex',
+                                            width: '100%',
+                                            aspectRatio: 1,
+                                        }}>
+                                            <Link href={this.state.ad.link} rel="noopener noreferrer" target="_blank">
+                                                <img height={undefined} width={'100%'} alt="Sponsored Banner"
+                                                     src={this.state.ad.image}/>
+                                            </Link>
+                                        </Card>
+                                    </div>
+                                </Grid>
+                            ) : null}
+                        </Grid>
                         <Row className="justify-content-center">
                             <Col md="6">
                                 <div className="clearfix">

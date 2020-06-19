@@ -82,20 +82,24 @@ export default function Search() {
             {loading ? (<LinearProgress variant="query" color="secondary"/>) : (null)}
 
             <main style={{backgroundColor: "#cfd8dc"}}>
-                {ad ? (
-                    <div style={{width: '100%', display: 'flex', justifyContent: 'center', paddingTop:10}}>
-                        <Card elevation={5} style={{
-                            display: 'flex',
-                            width: '60%',
-                            aspectRatio: 1,
-                        }}>
-                            <Link href={ad.link} rel="noopener noreferrer" target="_blank">
-                                <img height={undefined} width={'100%'}
-                                     src={ad.image}/>
-                            </Link>
-                        </Card>
-                    </div>
-                ) : null}
+                <Grid container spacing={4} style={{width: '100%', display: 'flex', justifyContent: 'center', paddingTop: 10}}>
+                    {ad ? (
+                        <Grid item xs={12} sm={8} md={6}>
+                            <div >
+                                <Card elevation={5} style={{
+                                    display: 'flex',
+                                    width: '100%',
+                                    aspectRatio: 1,
+                                }}>
+                                    <Link href={ad.link} rel="noopener noreferrer" target="_blank">
+                                        <img height={undefined} width={'100%'} alt="Sponsored Banner"
+                                             src={ad.image}/>
+                                    </Link>
+                                </Card>
+                            </div>
+                        </Grid>
+                    ) : null}
+                </Grid>
 
                 <div style={{display: 'flex', paddingTop: 30, justifyContent: 'center'}}>
                     <TextField
