@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import SearchIcon from '@material-ui/icons/Search';
@@ -16,6 +16,8 @@ import IconButton from "@material-ui/core/IconButton";
 import {Col, Row} from "reactstrap";
 import LinearProgress from "@material-ui/core/LinearProgress/LinearProgress";
 import algoliasearch from 'algoliasearch/lite';
+import axios from "axios";
+import Card from "@material-ui/core/Card/Card";
 
 
 const searchClient = algoliasearch(configs.algolia_appname, configs.algolia_search_key);
@@ -38,6 +40,7 @@ export default function Search() {
     const [response, setResponse] = useState();
     const [text, setText] = useState('');
     const [awaiting, setAwaiting] = useState(false);
+    const [ad, setAd] = useState();
 
     const search = () => {
         setLoading(true);
@@ -60,6 +63,16 @@ export default function Search() {
 
     };
 
+    useEffect(() => {
+        axios.post(configs.server_address + '/getAd', {page: 'search'}).then(res => {
+            if (res.data.success && res.data.data.enabled) {
+                setAd(res.data.data);
+            }
+        }).catch(err => {
+            console.log(err);
+        });
+    }, []);
+
     return (
         <React.Fragment>
             <CssBaseline/>
@@ -69,6 +82,21 @@ export default function Search() {
             {loading ? (<LinearProgress variant="query" color="secondary"/>) : (null)}
 
             <main style={{backgroundColor: "#cfd8dc"}}>
+                {ad ? (
+                    <div style={{width: '100%', display: 'flex', justifyContent: 'center', paddingTop:10}}>
+                        <Card elevation={5} style={{
+                            display: 'flex',
+                            width: '60%',
+                            aspectRatio: 1,
+                        }}>
+                            <Link href={ad.link} rel="noopener noreferrer" target="_blank">
+                                <img height={undefined} width={'100%'}
+                                     src={ad.image}/>
+                            </Link>
+                        </Card>
+                    </div>
+                ) : null}
+
                 <div style={{display: 'flex', paddingTop: 30, justifyContent: 'center'}}>
                     <TextField
                         label="Enter movie/series name, genre, or tags like 1080p, etc."

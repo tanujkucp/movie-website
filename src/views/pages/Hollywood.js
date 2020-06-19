@@ -64,6 +64,7 @@ export default function Hollywood() {
     const [latest, setLatest] = useState();
     const [loading, setLoading] = useState(false);
     const [responses, setResponses] = useState([]);
+    const [ad, setAd] = useState();
 
     //fetch data from server
     const loadData = (timestamp) => {
@@ -84,6 +85,13 @@ export default function Hollywood() {
             setLatest(null);
         });
 
+        axios.post(configs.server_address + '/getAd', {page: 'hollywood'}).then(res => {
+            if (res.data.success && res.data.data.enabled) {
+                setAd(res.data.data);
+            }
+        }).catch(err => {
+            console.log(err);
+        });
     };
 
 
@@ -135,6 +143,20 @@ export default function Hollywood() {
                 </Paper>
 
                 {loading ? (<LinearProgress variant="query" color="secondary"/>) : (null)}
+                {ad ? (
+                    <div style={{width: '100%', display: 'flex', justifyContent: 'center', marginTop: 10}}>
+                        <Card elevation={5} style={{
+                            display: 'flex',
+                            width: '60%',
+                            aspectRatio: 1,
+                        }}>
+                            <Link href={ad.link} rel="noopener noreferrer" target="_blank">
+                                <img height={undefined} width={'100%'}
+                                     src={ad.image}/>
+                            </Link>
+                        </Card>
+                    </div>
+                ) : null}
 
                 {latest ? (
                     <Container className={classes.cardGrid} maxWidth="md">

@@ -19,6 +19,7 @@
     "classnames": "latest",
     "clsx": "latest",
     "instantsearch.js": "^4.4.0",
+    "material-ui-image": "^3.2.3",
     "prop-types": "latest",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.0",

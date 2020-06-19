@@ -19,7 +19,6 @@ import Card from "@material-ui/core/Card/Card";
 import {Col, Row} from "reactstrap";
 import Link from "@material-ui/core/Link/Link";
 
-
 const useStyles = makeStyles((theme) => ({
     heroContent: {
         backgroundColor: theme.palette.background.paper,
@@ -47,6 +46,7 @@ export default function Home() {
     const [latest, setLatest] = useState();
     const [loading, setLoading] = useState(false);
     const [responses, setResponses] = useState([]);
+    const [ad, setAd] = useState();
 
     //fetch data from server
     const loadData = (timestamp) => {
@@ -66,6 +66,15 @@ export default function Home() {
             setLoading(false);
             setLatest(null);
         });
+
+        axios.post(configs.server_address + '/getAd', {page: 'home'}).then(res => {
+            if (res.data.success && res.data.data.enabled) {
+                setAd(res.data.data);
+            }
+        }).catch(err => {
+            console.log(err);
+        });
+
     };
 
     useEffect(() => {
@@ -134,6 +143,21 @@ export default function Home() {
                 </div>
 
                 {loading ? (<LinearProgress variant="query" color="secondary"/>) : (null)}
+                {ad ? (
+                    <div style={{width: '100%', display: 'flex', justifyContent: 'center', marginTop: 10}}>
+                        <Card elevation={5} style={{
+                            display: 'flex',
+                            width: '60%',
+                            aspectRatio: 1,
+                        }}>
+                            <Link href={ad.link} rel="noopener noreferrer" target="_blank">
+                                <img height={undefined} width={'100%'}
+                                     src={ad.image}/>
+                            </Link>
+                        </Card>
+                    </div>
+                ) : null}
+
                 <Container className={classes.cardGrid} maxWidth="md">
                     {/* End hero unit */}
                     {latest ? (<div>

@@ -47,13 +47,12 @@ export default function Header() {
                         <Link variant="button" color="textPrimary" href="/adult" className={classes.link}>
                             Adult 18+
                         </Link>
-                        <Link variant="button" color="textPrimary" href="/search" className={classes.link}>
                             <Button variant="contained"
                                     color="default"
+                                    href={'/search'}
                                     startIcon={<SearchIcon />}
                             >Search
                             </Button>
-                        </Link>
                     </nav>
                 </div>
             </Toolbar>

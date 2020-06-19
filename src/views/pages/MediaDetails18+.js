@@ -147,6 +147,7 @@ export default function MediaDetails(props) {
     const [open, setOpen] = React.useState(false);
     const [selected_download, setSelectedDownload] = useState();
     const [loading, setLoading] = useState(true);
+    const [ad, setAd] = useState();
 
     const handleClickOpen = (download) => {
         setOpen(true);
@@ -170,6 +171,14 @@ export default function MediaDetails(props) {
         }).catch(err => {
             console.log(err);
             setLoading(false);
+        });
+
+        axios.post(configs.server_address + '/getAd', {page: 'mediaadult'}).then(res => {
+            if (res.data.success  && res.data.data.enabled) {
+                setAd(res.data.data);
+            }
+        }).catch(err => {
+            console.log(err);
         });
     }, [params.id]);
 
@@ -223,6 +232,21 @@ export default function MediaDetails(props) {
                             </div>
                         </CardContent>
                     </Card>
+
+                    {ad ? (
+                        <div style={{width: '100%', display: 'flex', justifyContent: 'center', marginTop: 10, marginBottom: 10}}>
+                            <Card elevation={5} style={{
+                                display: 'flex',
+                                width: '60%',
+                                aspectRatio: 1,
+                            }}>
+                                <Link href={ad.link} rel="noopener noreferrer" target="_blank">
+                                    <img height={undefined} width={'100%'}
+                                         src={ad.image}/>
+                                </Link>
+                            </Card>
+                        </div>
+                    ) : null}
 
                     <Card className={cx(styles.root, shadowStyles.root)}>
                         <div style={{padding: 20, flexDirection: 'column'}}>

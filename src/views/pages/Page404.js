@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import {Col, Container, Row} from 'reactstrap';
 import Header from "../widgets/Header";
 import CssBaseline from "@material-ui/core/CssBaseline/CssBaseline";
@@ -7,8 +7,23 @@ import Footer from "../widgets/Footer";
 import configs from "../../configs";
 import Typography from "@material-ui/core/Typography/Typography";
 import Link from "@material-ui/core/Link";
+import axios from "axios";
+import Card from "@material-ui/core/Card/Card";
 
 class Page404 extends Component {
+    state = {
+        ad: {}
+    }
+
+    componentDidMount() {
+        axios.post(configs.server_address + '/getAd', {page: '404'}).then(res => {
+            if (res.data.success && res.data.data.enabled) {
+                this.setState({ad: res.data.data});
+            }
+        }).catch(err => {
+            console.log(err);
+        });
+    }
 
     render() {
         return (
@@ -18,12 +33,26 @@ class Page404 extends Component {
 
                 <div style={{
                     backgroundColor: "#cfd8dc",
-                    paddingTop: 150,
+                    paddingTop: 10,
                     paddingBottom: 150,
                     justifyContent: 'center',
                     display: 'flex'
                 }}>
                     <Container>
+                        {this.state.ad ? (
+                            <div style={{width: '100%', display: 'flex', justifyContent: 'center', marginTop: 10}}>
+                                <Card elevation={5} style={{
+                                    display: 'flex',
+                                    width: '60%',
+                                    aspectRatio: 1,
+                                }}>
+                                    <Link href={this.state.ad.link} rel="noopener noreferrer" target="_blank">
+                                        <img height={undefined} width={'100%'}
+                                             src={this.state.ad.image}/>
+                                    </Link>
+                                </Card>
+                            </div>
+                        ) : null}
                         <Row className="justify-content-center">
                             <Col md="6">
                                 <div className="clearfix">
