@@ -58,7 +58,7 @@ export default function Home() {
                 //change state of all elements
                 setLatest(res.data.data);
             } else {
-                alert(res.data.message);
+                console.log(res.data.message);
             }
             setLoading(false);
         }).catch(err => {

@@ -262,12 +262,11 @@ export default function MediaDetails(props) {
 
                             <div style={{width: '100%', paddingLeft: 0, paddingRight: 0, marginBottom: 10}}>
                                 <Alert severity="info" action={
-                                    <Button color="primary" variant={"contained"} size="small" target="_blank"
-                                            href={configs.telegram_group_link} rel="noopener noreferrer">
-                                        Contact Us
+                                    <Button color="primary" variant={"contained"} size="small" target="_blank" href={configs.howto_video_link} rel="noopener noreferrer">
+                                        Watch Now
                                     </Button>
                                 }>
-                                    If you are having any problems downloading or want to contact us, click here.
+                                    Watch this video on YouTube to learn How To Download movies from this site.
                                 </Alert>
                                 <Alert severity="warning" action={
                                     <Button color="secondary" variant={"contained"} size="small" target="_blank"

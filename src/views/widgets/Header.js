@@ -1,6 +1,5 @@
 import React from 'react';
 import Toolbar from "@material-ui/core/Toolbar/Toolbar";
-import Typography from "@material-ui/core/Typography/Typography";
 import configs from "../../configs";
 import AppBar from "@material-ui/core/AppBar/AppBar";
 import {makeStyles} from "@material-ui/core";
@@ -26,11 +25,8 @@ export default function Header() {
         <AppBar position="relative" style={{backgroundColor: 'rgb(36, 40, 44)'}}>
             <Toolbar style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <div>
-                    <img src={logo} alt={'Logo'} className={classes.icon} style={{float: 'left'}}/>
-                    <Link color="inherit" href={configs.website_address} style={{float: 'right'}}>
-                        <Typography variant="h6" style={{color: 'white'}} noWrap>
-                            {configs.website_name}
-                        </Typography>
+                    <Link color="inherit" href={configs.website_address}>
+                        <img src={logo} alt={'Logo'} className={classes.icon} style={{float: 'left'}}/>
                     </Link>
                 </div>
                 <div>
@@ -47,12 +43,12 @@ export default function Header() {
                         <Link variant="button" color="textPrimary" href="/adult" className={classes.link}>
                             Adult 18+
                         </Link>
-                            <Button variant="contained"
-                                    color="default"
-                                    href={'/search'}
-                                    startIcon={<SearchIcon />}
-                            >Search
-                            </Button>
+                        <Button variant="contained"
+                                color="default"
+                                href={'/search'}
+                                startIcon={<SearchIcon/>}
+                        >Search
+                        </Button>
                     </nav>
                 </div>
             </Toolbar>
