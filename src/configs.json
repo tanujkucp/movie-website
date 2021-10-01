@@ -1,13 +1,13 @@
 {
   "website_name": "Filmistaan",
   "website_address": "/",
-  "server_address":"https://asia-northeast1-filmistaan-1f6ac.cloudfunctions.net",
+  "server_address":"[REDACTED]",
   "telegram_channel_name":"Filmistaan",
   "telegram_channel_link":"https://t.me/Suvooh",
   "telegram_group_name": "Suvooh Group",
   "telegram_group_link": "https://t.me/joinchat/KGbZH1avlIPTK63D-ogqaA",
   "howto_video_link": "https://youtu.be/0kwj8jWBocQ",
   "algolia_appname":"ELRRSHQHGD",
-  "algolia_search_key":"680a915d8b1ce3c430b1412f34f89ec3",
+  "algolia_search_key":"[REDACTED]",
   "algolia_index_name":"titles"
 }
