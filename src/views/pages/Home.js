@@ -70,6 +70,8 @@ export default function Home() {
         axios.post(configs.server_address + '/getAd', {page: 'home'}).then(res => {
             if (res.data.success && res.data.data.enabled) {
                 setAd(res.data.data);
+            }else {
+                console.log(res.data.message);
             }
         }).catch(err => {
             console.log(err);
