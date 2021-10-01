@@ -51,6 +51,7 @@ export default function Search() {
         if(keyword.length <1){
             setLoading(false);
             return;
+            console.log('empty search term');
         }
 
         index.search(keyword).then(({hits}) => {
@@ -67,6 +68,8 @@ export default function Search() {
         axios.post(configs.server_address + '/getAd', {page: 'search'}).then(res => {
             if (res.data.success && res.data.data.enabled) {
                 setAd(res.data.data);
+            }else {
+                console.log('server error - no data received!');   
             }
         }).catch(err => {
             console.log(err);
